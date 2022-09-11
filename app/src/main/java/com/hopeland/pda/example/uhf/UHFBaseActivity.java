@@ -49,6 +49,7 @@ public class UHFBaseActivity extends BaseActivity {
 				}
 
 				Thread.sleep(500);
+
 			} else {
 				rt = true;
 			}
