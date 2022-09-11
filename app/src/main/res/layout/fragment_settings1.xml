@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_gray"
     android:clickable="true"
-    android:focusable="true"
-    tools:context="com.handheld.uhfrdemo.SAED.UI.Fragments.Client.SettingsFragment">
+    android:focusable="true">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
