@@ -393,6 +393,6 @@
 //
 //
 //    public interface OnReadTag {
-//        void onRead(@NotNull String epc, int rssi);
+//        void onRead(@NotNull String epc, byte rssi);
 //    }
 //}

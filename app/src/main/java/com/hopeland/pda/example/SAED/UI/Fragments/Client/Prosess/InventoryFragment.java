@@ -1,4 +1,4 @@
-package com.hopeland.pda.example.SAED.UI.Fragments.Client;
+package com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess;
 
 import android.annotation.SuppressLint;
 
@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -215,6 +217,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         for (All.Epc epc : listEpc)
             listStringEpc.add(epc.epc);
 
+        Log.d(TAG, "initListEpc: " + listEpc);
         expected.setText(String.valueOf(listEpc.size()));
     }
 
@@ -303,6 +306,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     }
 
     private Report createReport() {
+
         Report report = new Report();
         report.setWid(list.get(warehousesSpinner.getSelectedItemPosition()).id);
         report.setDt(new Date());
@@ -335,11 +339,24 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public void onRead(@NotNull String epc, int rssi) {
+    public void onResume() {
+        super.onResume();
+        myActivity.onReadTag = this;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        myActivity.onReadTag = null;
+    }
+
+    @Override
+    public void onRead(@NotNull String epc, byte rssi) {
 
         if (listStringEpc.isEmpty()) {
             handler.sendEmptyMessage(2);
             myActivity.stop();
+            return;
         }
 
         if (listStringEpc.contains(epc)) {

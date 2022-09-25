@@ -18,6 +18,7 @@ public class Test extends Thread {
 
     @Override
     public void run() {
+
         synchronized (lockSend) {
 
             while (threadKill) {
@@ -33,8 +34,8 @@ public class Test extends Thread {
                 if (!webSocketClient.isOpen())
                     continue;
 
-
                 webSocketClient.send(s);
+
             }
         }
     }
@@ -43,7 +44,6 @@ public class Test extends Thread {
     public void sendString(String s) {
 
         this.s = s;
-        Log.d("SAED_", "sendString: send");
 
         synchronized (lockSend) {
             lockSend.notify();

@@ -1,4 +1,4 @@
-package com.hopeland.pda.example.SAED.UI.Fragments.Prosess;
+package com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess;
 
 import android.annotation.SuppressLint;
 
@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -41,14 +40,16 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
     Spinner spinnerTypeScan;
     TextView typeScanTv;
 
-
     //region base
 
     RecyclerView recyclerView;
 
     AdapterItemEpc adapter;
+
     ArrayList<String> sentEpc = new ArrayList<>();
+
     MyViewModel myViewModel;
+
     View view;
     //endregion
 
@@ -57,6 +58,7 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
                              Bundle savedInstanceState) {
         myActivity = (ClientActivity) requireActivity();
         myViewModel = myActivity.myViewModel;
+
         myViewModel.productLiveData = new MutableLiveData<>();
 
         view = inflater.inflate(R.layout.fragment_scan, container, false);
@@ -73,12 +75,15 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
     final androidx.lifecycle.Observer<Product> Observer = product -> {
         if (!isAdded())
             return;
+
         if (product == null)
+            return;
+
+        if (sentEpc.contains(product.epc))
             return;
 
         sentEpc.add(product.epc);
         adapter.insertItem(product);
-
     };
 
     void initView() {
@@ -116,7 +121,6 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
         myViewModel.productLiveData.removeObserver(Observer);
     }
 
-    int x = 0;
 
     @Override
     public void onClick(View v) {
@@ -124,8 +128,6 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
 
             case R.id.read: {
                 myActivity.read();
-                x += 1;
-                myViewModel.getProduct(myActivity.socket, "000" + x);
                 break;
             }
 
@@ -135,9 +137,15 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
             }
 
             case R.id.clean: {
-                x = 0;
+                myActivity.stop();
+
+                if (myViewModel.productLiveData != null)
+                    myViewModel.productLiveData.setValue(null);
+
                 sentEpc.clear();
+
                 adapter.setAndRefresh(new ArrayList<>());
+
                 break;
             }
 
@@ -148,16 +156,17 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
         }
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
+        myActivity.onReadTag = null;
         removeObserveProduct();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        myActivity.onReadTag = this;
         observeProduct();
     }
 
@@ -175,7 +184,8 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public void onRead(@NotNull String epc, int rssi) {
+    public void onRead(@NotNull String epc, byte rssi) {
+
         if (sentEpc.contains(epc))
             return;
 

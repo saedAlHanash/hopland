@@ -97,7 +97,7 @@ public class ClientActivity extends UHFBaseActivity implements
     public MyViewModel myViewModel;
     Gson gson = new Gson();
 
-    OnReadTag onReadTag;
+    public OnReadTag onReadTag;
 
     //endregion
 
@@ -130,6 +130,16 @@ public class ClientActivity extends UHFBaseActivity implements
     void initView() {
         clientContainer = findViewById(R.id.client_container);
         notConnectTv = findViewById(R.id.not_connect);
+//        rssis[0] = 60;
+//        rssis[1] = 70;
+//        rssis[2] = 90;
+//        rssis[3] = 120;
+//        rssis[4] = 50;
+//        rssis[5] = 80;
+//        rssis[6] = 100;
+//        rssis[7] = 65;
+//        rssis[8] = 85;
+//        rssis[9] = 95;
     }
 
     //region getData
@@ -138,9 +148,6 @@ public class ClientActivity extends UHFBaseActivity implements
         myViewModel.getAll(socket);
     }
 
-    public void getProduct(String epc) {
-        myViewModel.getProduct(socket, epc);
-    }
 
     //endregion
 
@@ -321,8 +328,23 @@ public class ClientActivity extends UHFBaseActivity implements
 
     //region process
 
+    int x;
+    int[] rssis = new int[10];
+
+
     // Start reading tag
     public void read() {
+
+        if (onReadTag == null)
+            return;
+
+//        x += 1;
+//
+//        if (x == 2)
+//            onReadTag.onRead("00242540" + x, rssis[x]);
+//        else
+//            onReadTag.onRead("000" + x, rssis[x]);
+
         if (isStartPingPong)
             return;
 
@@ -330,13 +352,9 @@ public class ClientActivity extends UHFBaseActivity implements
 
         Helper_ThreadPool.ThreadPool_StartSingle(() -> {
             try {
-
                 GetEPC_6C();
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception ignored) {
             }
-
         });
     }
 
@@ -431,9 +449,8 @@ public class ClientActivity extends UHFBaseActivity implements
             switch (msg.what) {
 
                 case 1:
-
                     String epc = msg.getData().getString("epc");
-                    int rssi = msg.getData().getInt("rssi");
+                    byte rssi = msg.getData().getByte("rssi");
 
                     if (epc == null || epc.length() == 0)
                         return;
@@ -548,31 +565,23 @@ public class ClientActivity extends UHFBaseActivity implements
         return super.onKeyUp(keyCode, event);
     }
 
+    Bundle bundle = new Bundle();
+
     @Override
     public void OutPutEPC(EPCModel model) {
         if (!isStartPingPong)
             return;
         try {
-            synchronized (hmList_Lock) {
 
-                Bundle bundle = new Bundle();
+            synchronized (hmList_Lock) {
                 bundle.putString("epc", model._EPC);
-                bundle.putInt("rssi", (int) model._RSSI_dB);
+                bundle.putByte("rssi", model._RSSI);
                 Message message = new Message();
                 message.what = 1;
                 message.setData(bundle);
 
                 handler1.sendMessage(message);
 
-//                if (hmList.containsKey(model._EPC + model._TID)) {
-//                    EPCModel tModel = hmList.get(model._EPC + model._TID);
-//                    tModel._TotalCount++;
-//                    model._TotalCount = tModel._TotalCount;
-//                    hmList.remove(model._EPC + model._TID);
-//                    hmList.put(model._EPC + model._TID, model);
-//                } else {
-//                    hmList.put(model._EPC + model._TID, model);
-//                }
             }
             synchronized (beep_Lock) {
                 beep_Lock.notify();
@@ -594,6 +603,6 @@ public class ClientActivity extends UHFBaseActivity implements
     }
 
     public interface OnReadTag {
-        void onRead(@NotNull String epc, int rssi);
+        void onRead(@NotNull String epc, byte rssi);
     }
 }

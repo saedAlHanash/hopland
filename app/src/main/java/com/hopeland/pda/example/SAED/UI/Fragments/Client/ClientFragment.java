@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,10 @@ import com.hopeland.pda.example.R;
 import com.hopeland.pda.example.SAED.AppConfig.FC;
 import com.hopeland.pda.example.SAED.AppConfig.FN;
 import com.hopeland.pda.example.SAED.Helpers.View.FTH;
-import com.hopeland.pda.example.SAED.Helpers.system.HardWar;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.InventoryFragment;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.SmartScanFragment;
 import com.hopeland.pda.example.uhf.ClientActivity;
-import com.hopeland.pda.example.SAED.UI.Fragments.Prosess.ScanFragment;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.ScanFragment;
 
 
 @SuppressLint("NonConstantResourceId")

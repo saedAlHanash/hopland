@@ -21,6 +21,8 @@ public class MyViewModel extends ViewModel {
     public MutableLiveData<Boolean> sendReportLiveData = new MutableLiveData<>();
 
     public void getAll(SaedSocket socket) {
+        if (socket == null)
+            return;
         if (allLiveData.getValue() != null) {
             allLiveData.postValue(allLiveData.getValue());
             return;
@@ -30,6 +32,8 @@ public class MyViewModel extends ViewModel {
     }
 
     public void getProduct(SaedSocket socket, String epc) {
+        if (socket == null)
+            return;
         socket.send("0," + epc);
     }
 
@@ -37,6 +41,8 @@ public class MyViewModel extends ViewModel {
 
     public void sendReport(SaedSocket socket, Report report) {
 
+        if (socket == null)
+            return;
         sendReportLiveData = new MutableLiveData<>();
 
         String json = gson.toJson(report, Report.class);
