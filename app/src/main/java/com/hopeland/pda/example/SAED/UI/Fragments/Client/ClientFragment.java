@@ -1,7 +1,6 @@
 package com.hopeland.pda.example.SAED.UI.Fragments.Client;
 
-
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -11,88 +10,106 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hopeland.pda.example.AppConfig.FC;
-import com.hopeland.pda.example.AppConfig.FN;
-import com.hopeland.pda.example.Helpers.View.FTH;
+
 import com.hopeland.pda.example.R;
-import com.hopeland.pda.example.uhf.UHFMain;
-import com.port.Adapt;
+import com.hopeland.pda.example.SAED.AppConfig.FC;
+import com.hopeland.pda.example.SAED.AppConfig.FN;
+import com.hopeland.pda.example.SAED.Helpers.View.FTH;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.InventoryFragment;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.SmartScanFragment;
+import com.hopeland.pda.example.uhf.ClientActivity;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.ScanFragment;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class ClientFragment extends Fragment {
+@SuppressLint("NonConstantResourceId")
+public class ClientFragment extends Fragment implements View.OnClickListener {
 
 
-    @BindView(R.id.smart_scan)
     CardView smartScan;
-    @BindView(R.id.inventory)
     CardView inventory;
-    @BindView(R.id.scan)
     CardView scan;
-    @BindView(R.id.settings)
     CardView settings;
 
-    boolean isClient = false;
-
     View view;
+    ClientActivity myActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        myActivity = (ClientActivity) requireActivity();
         view = inflater.inflate(R.layout.fragment_client, container, false);
-        ButterKnife.bind(this, view);
+        initView();
 
         listeners();
-
 
         return view;
     }
 
-    void listeners() {
-        // المسح الذكي
-        smartScan.setOnClickListener(smartScanListener);
-
-        // جرد المخزن
-        inventory.setOnClickListener(inventoryListener);
-
-        // مسح منتج
-        scan.setOnClickListener(scanListener);
-
-        //اعدادات
-        settings.setOnClickListener(settingsListener);
+    private void initView() {
+        smartScan = view.findViewById(R.id.smart_scan);
+        inventory = view.findViewById(R.id.inventory);
+        scan = view.findViewById(R.id.scan);
+        settings = view.findViewById(R.id.settings);
     }
 
-    // المسح الذكي
-    private final View.OnClickListener smartScanListener = v -> {
-
-    };
-    // جرد المخزن
-    private final View.OnClickListener inventoryListener = v -> {
-        startInventory();
-    };
-    // مسح منتج
-    private final View.OnClickListener scanListener = v -> {
-        startUHFMainActivity();
-    };
-    //اعدادات
-    private final View.OnClickListener settingsListener = v -> {
-        startSetting();
-    };
-
-
-    void startUHFMainActivity() {
-
-        Adapt.init(requireContext());
-        Adapt.enablePauseInBackGround(requireContext());
-
-        requireActivity().startActivity(new Intent(requireContext(), UHFMain.class));
+    void listeners() {
+        // المسح الذكي
+        smartScan.setOnClickListener(this);
+        // جرد المخزن
+        inventory.setOnClickListener(this);
+        // مسح منتج
+        scan.setOnClickListener(this);
+        //اعدادات
+        settings.setOnClickListener(this);
     }
 
     void startSetting() {
-        FTH.addFragmentUpFragment(FC.CLIENT_C, requireActivity(), new SettingsFragment(), FN.SETTING_FN);
+        FTH.addFragmentUpFragment(FC.CLIENT_C, requireActivity(),
+                new SettingsFragment(), FN.SETTING_FN);
     }
 
     void startInventory() {
-        FTH.addFragmentUpFragment(FC.CLIENT_C, requireActivity(), new InventoryFragment(), FN.SETTING_FN);
+        FTH.addFragmentUpFragment(FC.CLIENT_C, requireActivity(),
+                new InventoryFragment(), FN.SETTING_FN);
     }
+
+    void startScanFragment() {
+        FTH.addFragmentUpFragment(FC.CLIENT_C, myActivity,
+                new ScanFragment(), FN.SCAN_FN);
+    }
+
+    void startSmartScanFragment() {
+        FTH.addFragmentUpFragment(FC.CLIENT_C, requireActivity(),
+                new SmartScanFragment(), FN.SMART_SCAN_FN);
+    }
+
+        private static final String TAG = "ClientFragment";
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            // المسح الذكي
+            case R.id.smart_scan: {
+                startSmartScanFragment();
+                break;
+            }
+            // جرد المخزن
+            case R.id.inventory: {
+
+                startInventory();
+                break;
+            }
+            // مسح منتج
+            case R.id.scan: {
+                startScanFragment();
+                break;
+            }
+            //اعدادات
+            case R.id.settings: {
+
+                startSetting();
+                break;
+            }
+        }
+    }
+
+
 }

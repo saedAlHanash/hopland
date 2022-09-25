@@ -271,8 +271,7 @@
 				android:orientation="horizontal">
 
 				<Button
-					android:id="@+id/btn_mifare_UID"
-					android:layout_height="wrap_content"
+                    android:layout_height="wrap_content"
 					android:layout_width="match_parent"
 					android:layout_margin="5dp"
 					android:background="@drawable/button_orange"
@@ -295,8 +294,7 @@
 				android:orientation="horizontal">
 
 				<Button
-					android:id="@+id/btn_mifare_read"
-					android:layout_width="0dp"
+                    android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.3"
@@ -305,8 +303,7 @@
 					android:text="@string/hf_read"/>
 
 				<Button
-					android:id="@+id/btn_mifare_write"
-					android:layout_width="0dp"
+                    android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.3"
@@ -315,8 +312,7 @@
 					android:text="@string/hf_write"/>
 
 				<Button
-					android:id="@+id/btn_mifare_BlockValue"
-					android:layout_width="0dp"
+                    android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.4"

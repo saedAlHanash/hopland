@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hopeland.pda.example.AppConfig.SharedPreference;
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
 
 import java.util.Locale;
 
@@ -21,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         SharedPreference.getInstance(this);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-        new Handler().postDelayed((Runnable) this::startAuth, 2500);
+        new Handler().postDelayed(this::startAuth, 2500);
     }
 
     private void startAuth() {

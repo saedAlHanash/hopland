@@ -22,8 +22,7 @@
 
 
 			<Button
-				android:id="@+id/btn_Main_Read"
-				android:layout_width="fill_parent"
+                android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
 				android:background="@drawable/button_blue"
@@ -32,8 +31,7 @@
 				android:textSize="22sp" />
 
 			<Button
-				android:id="@+id/btn_Main_Read_Matching"
-				android:layout_width="fill_parent"
+                android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
 				android:background="@drawable/button_blue"
@@ -42,8 +40,7 @@
 				android:textSize="22sp" />
 
 			<Button
-				android:id="@+id/btn_Main_Write"
-				android:layout_width="fill_parent"
+                android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
 				android:background="@drawable/button_blue"
@@ -53,8 +50,7 @@
 				android:textSize="22sp" />
 
 			<Button
-				android:id="@+id/btn_Main_Config"
-				android:layout_width="fill_parent"
+                android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
 				android:background="@drawable/button_blue"
@@ -64,8 +60,7 @@
 				android:textSize="22sp" />
 
 			<Button
-				android:id="@+id/btn_Item_Main_Version"
-				android:layout_width="fill_parent"
+                android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
 				android:background="@drawable/button_orange"
@@ -139,8 +134,7 @@
 			</LinearLayout>
 
 			<Button
-				android:id="@+id/ip_config"
-				android:layout_width="match_parent"
+                android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
 				android:background="@drawable/button_orange"

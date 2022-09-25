@@ -115,7 +115,6 @@
             android:layout_margin="5dp"
             android:layout_weight="0.3"
             android:background="@drawable/button_blue"
-            android:onClick="Read"
             android:text="@string/btn_read"
             android:textSize="18sp"/>
 

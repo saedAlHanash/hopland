@@ -430,11 +430,6 @@ public class ReadEPCmatchingActivity extends UHFBaseActivity implements
 		);
 	}
 
-	@Override
-	public void onBackPressed() {
-		//super.onBackPressed();
-		Back(null);
-	}
 
 	@Override
 	protected void onDestroy() {

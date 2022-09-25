@@ -3,42 +3,32 @@ package com.hopeland.pda.example.SAED.UI.Fragments.Auth;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.hopeland.pda.example.AppConfig.FC;
-import com.hopeland.pda.example.AppConfig.FC;
-import com.hopeland.pda.example.AppConfig.FN;
-import com.hopeland.pda.example.AppConfig.SharedPreference;
-import com.hopeland.pda.example.Helpers.View.FTH;
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.AppConfig.FC;
+import com.hopeland.pda.example.SAED.AppConfig.FN;
+import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
+import com.hopeland.pda.example.SAED.Helpers.View.FTH;
 import com.hopeland.pda.example.SAED.UI.Activities.AuthActivity;
-import com.hopeland.pda.example.SAED.UI.Activities.ClientActivity;
+import com.hopeland.pda.example.uhf.ClientActivity;
 
 import java.util.Locale;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class AuthFragment extends Fragment {
 
-    @BindView(R.id.login)
     Button login;
-    @BindView(R.id.guest)
     Button guest;
-    @BindView(R.id.language)
     Spinner languageSpinner;
-    @BindView(R.id.textView5)
     TextView languageIcon;
 
     int mSpinnerCheck = 0;
@@ -46,15 +36,22 @@ public class AuthFragment extends Fragment {
     View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_auth, container, false);
-        ButterKnife.bind(this, view);
 
+        initView();
 
         listeners();
 
-
         return view;
+    }
+
+    private void initView() {
+        login = view.findViewById(R.id.login);
+        guest = view.findViewById(R.id.guest);
+        languageSpinner = view.findViewById(R.id.language);
+        languageIcon = view.findViewById(R.id.textView5);
     }
 
 
@@ -67,10 +64,11 @@ public class AuthFragment extends Fragment {
     }
 
     void listeners() {
+
         login.setOnClickListener(adminListener);
         guest.setOnClickListener(guestListener);
-        languageSpinner.setOnItemSelectedListener(languageListener);
 
+//        languageSpinner.setOnItemSelectedListener(languageListener);
         languageIcon.setOnClickListener(view1 -> {
             languageSpinner.performClick();
         });
@@ -84,40 +82,38 @@ public class AuthFragment extends Fragment {
         startClientActivity();
     };
 
-
-    private final AdapterView.OnItemSelectedListener languageListener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            switch (i) {
-
-                case 0:
-                    ((TextView) view).setTextColor(getResources().getColor(R.color.gray));
-                    break;
-
-                case 1: {
-                    setLanguage("ar");
-                    break;
-                }
-
-                case 2: {
-                    setLanguage("en");
-                    break;
-                }
-            }
-
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> adapterView) {
-
-        }
-    };
+//    private final AdapterView.OnItemSelectedListener languageListener =
+//            new AdapterView.OnItemSelectedListener() {
+//        @Override
+//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//            switch (i) {
+//
+//                case 0:
+//                    ((TextView) view).setTextColor(getResources().getColor(R.color.gray));
+//                    break;
+//
+//                case 1: {
+//                    setLanguage("ar");
+//                    break;
+//                }
+//
+//                case 2: {
+//                    setLanguage("en");
+//                    break;
+//                }
+//            }
+//        }
+//
+//        @Override
+//        public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//        }
+//    };
 
     void startClientActivity() {
         Intent intent = new Intent(requireActivity(), ClientActivity.class);
-        startActivity(intent);
+        requireActivity().startActivity(intent);
+        requireActivity().finish();
     }
 
     void startLoginFragment() {

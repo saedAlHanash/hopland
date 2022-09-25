@@ -1,7 +1,7 @@
 package com.hopeland.pda.example.uhf;
 
-import com.hopeland.pda.example.AppConfig.SharedPreference;
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
 import com.pda.rfid.EPCModel;
 import com.pda.rfid.IAsynchronousMessage;
 import com.port.Adapt;
@@ -14,8 +14,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.fragment.app.DialogFragment;
 
 /**
  * @author RFID_C UHF
@@ -38,7 +36,7 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
         switch (msg.what) {
             case MSG_ENTER_READ:
                 intent = new Intent();
-                intent.setClass(UHFMain.this, ReadEPCActivity.class);
+                intent.setClass(UHFMain.this, ClientActivity.class);
                 startActivity(intent);
                 break;
             case MSG_ENTER_READ_MATCH:

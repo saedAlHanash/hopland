@@ -8,28 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
 
 import java.util.Hashtable;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-import static com.hopeland.pda.example.AppConfig.SharedPreference.getIp;
-import static com.hopeland.pda.example.AppConfig.SharedPreference.getPort;
-import static com.hopeland.pda.example.AppConfig.SharedPreference.saveIp;
-import static com.hopeland.pda.example.AppConfig.SharedPreference.savePort;
 
 public class SettingsFragment extends Fragment {
 
-    @BindView(R.id.ip)
     EditText ip;
-    @BindView(R.id.port)
     EditText port;
-    @BindView(R.id.save)
     Button save;
 
     View view;
@@ -38,8 +28,9 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_settings, container, false);
-        ButterKnife.bind(this, view);
+        view = inflater.inflate(R.layout.fragment_settings1, container, false);
+
+        initViews();
 
         initIpEditText();
 
@@ -48,6 +39,12 @@ public class SettingsFragment extends Fragment {
         listeners();
 
         return view;
+    }
+
+    private void initViews() {
+        ip = view.findViewById(R.id.ip);
+        port = view.findViewById(R.id.port);
+        save = view.findViewById(R.id.save);
     }
 
     void listeners() {
@@ -63,6 +60,7 @@ public class SettingsFragment extends Fragment {
 
 
     //saed :
+
     void initIpEditText() {
         InputFilter[] filters = new InputFilter[1];
         filters[0] = (source, start, end, dest, dstart, dend) -> {
@@ -91,8 +89,8 @@ public class SettingsFragment extends Fragment {
 
     void initIpAnPort() {
 
-        int mPort = getPort();
-        String mIp = getIp();
+        int mPort = SharedPreference.getPort();
+        String mIp = SharedPreference.getIp();
 
         if (!mIp.isEmpty())
             this.ip.setText(mIp);
@@ -114,8 +112,8 @@ public class SettingsFragment extends Fragment {
             return;
         }
 
-        saveIp(mIp);
-        savePort(mPort);
+        SharedPreference.saveIp(mIp);
+        SharedPreference.savePort(mPort);
 
         Toast.makeText(requireActivity(), getResources().getString(R.string.done), Toast.LENGTH_SHORT).show();
 
