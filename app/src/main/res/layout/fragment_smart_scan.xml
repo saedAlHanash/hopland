@@ -21,6 +21,7 @@
         android:gravity="center"
         android:hint="epc"
         android:inputType="numberSigned|number"
+        android:maxLength="24"
         android:paddingStart="@dimen/_5sdp"
         android:paddingTop="@dimen/_10sdp"
         android:paddingEnd="@dimen/_5sdp"

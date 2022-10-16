@@ -87,7 +87,8 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
 
     @Override
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         myActivity = (ClientActivity) requireActivity();
         myViewModel = myActivity.myViewModel;
         view = inflater.inflate(R.layout.fragment_inventory1, container, false);

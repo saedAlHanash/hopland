@@ -12,12 +12,15 @@ import com.google.gson.reflect.TypeToken;
 import com.hopeland.pda.example.PublicData;
 import com.hopeland.pda.example.R;
 import com.hopeland.pda.example.SAED.AppConfig.FC;
+import com.hopeland.pda.example.SAED.AppConfig.FN;
 import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
 import com.hopeland.pda.example.SAED.Helpers.Converters.GzipConverter;
 import com.hopeland.pda.example.SAED.Helpers.Images.ConverterImage;
+import com.hopeland.pda.example.SAED.Helpers.NoteMessage;
 import com.hopeland.pda.example.SAED.Helpers.View.FTH;
 import com.hopeland.pda.example.SAED.Network.SaedSocket;
 import com.hopeland.pda.example.SAED.UI.Fragments.Client.ClientFragment;
+import com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess.SmartScanFragment;
 import com.hopeland.pda.example.SAED.ViewModels.All;
 import com.hopeland.pda.example.SAED.ViewModels.MyViewModel;
 import com.hopeland.pda.example.SAED.ViewModels.Product;
@@ -38,6 +41,7 @@ import android.view.*;
 import android.widget.*;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -98,6 +102,7 @@ public class ClientActivity extends UHFBaseActivity implements
     Gson gson = new Gson();
 
     public OnReadTag onReadTag;
+    public String smartScanEpc;
 
     //endregion
 
@@ -368,6 +373,26 @@ public class ClientActivity extends UHFBaseActivity implements
     }
 
 
+    // Start reading tag
+    public void readSmart(String epc) {
+
+        if (onReadTag == null)
+            return;
+
+        if (isStartPingPong)
+            return;
+
+        isStartPingPong = true;
+
+        Helper_ThreadPool.ThreadPool_StartSingle(() -> {
+            try {
+                GetEPC_6CSmart(epc);
+            } catch (Exception ignored) {
+            }
+        });
+    }
+
+
     //init
     protected void Init() {
         if (!UHF_Init(this)) { // 打开模块电源失败
@@ -469,7 +494,7 @@ public class ClientActivity extends UHFBaseActivity implements
 
     void startClientFragment() {
         FTH.replaceFadFragment(FC.CLIENT_C,
-                this, new ClientFragment());
+                this, new ClientFragment(),FN.CLIENT_FN);
     }
 
     void removeObservers() {
@@ -510,9 +535,12 @@ public class ClientActivity extends UHFBaseActivity implements
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Log.d("PDADemo", "onKeyDown keyCode = " + keyCode);
-        if ((Adapt.DEVICE_TYPE_HY820 == Adapt.getDeviceType() && (keyCode == KeyEvent.KEYCODE_F9 /* RFID扳机*/ || keyCode == 285  /* 左快捷*/ || keyCode == 286  /* 右快捷*/))
-                || ((Adapt.getSN().startsWith("K3")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))
-                || ((Adapt.getSN().startsWith("K6")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))) { // 按下扳机
+        if ((Adapt.DEVICE_TYPE_HY820 == Adapt.getDeviceType() && (keyCode == KeyEvent.KEYCODE_F9 /* RFID扳机*/
+                || keyCode == 285  /* 左快捷*/ || keyCode == 286  /* 右快捷*/))
+                || ((Adapt.getSN().startsWith("K3")) && (keyCode == KeyEvent.KEYCODE_F1
+                || keyCode == KeyEvent.KEYCODE_F5))
+                || ((Adapt.getSN().startsWith("K6")) && (keyCode == KeyEvent.KEYCODE_F1
+                || keyCode == KeyEvent.KEYCODE_F5))) { // 按下扳机
 
 //            btn_Read.setText(getString(R.string.btn_read_stop));
 //            sp_ReadType.setEnabled(false);
@@ -525,7 +553,17 @@ public class ClientActivity extends UHFBaseActivity implements
                     isStartPingPong = true;
                     String rt;
                     if (PublicData._IsCommand6Cor6B.equals("6C")) {// 6C
-                        GetEPC_6C();
+                        if (FTH.getCurrentFragmentName(this).equals(FN.SMART_SCAN_FN)) {
+                            Fragment fragment = FTH.getFragmentByName(this, FN.SMART_SCAN_FN);
+                            if (fragment != null) {
+                                String epc = ((SmartScanFragment) fragment).epc.getText().toString();
+                                GetEPC_6CSmart(epc);
+                            } else {
+                                NoteMessage.showSnackBar(this, "يرجى استخدام زر الشاشة للقراءة");
+                            }
+
+                        } else
+                            GetEPC_6C();
                     } else {// 6B
                         rt = CLReader.Get6B(_NowAntennaNo + "|1" + "|1" + "|"
                                 + "1,000F");
@@ -598,6 +636,16 @@ public class ClientActivity extends UHFBaseActivity implements
 
         int ret;
         ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, 1);
+
+        return ret;
+    }
+
+    //6C,Read tag
+    private int GetEPC_6CSmart(String epc) {
+
+        int ret;
+
+        ret = UHFReader._Tag6C.GetEPC_MatchEPC(_NowAntennaNo, 1, epc);
 
         return ret;
     }
