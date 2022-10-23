@@ -61,7 +61,14 @@
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/uhf_read.xml" value="0.25" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/uhf_read_matching.xml" value="0.25" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/uhf_wirte.xml" value="0.209375" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_baseline_cancel_24.xml" value="0.1205" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_baseline_center_focus_strong_24.xml" value="0.1205" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.1205" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1205" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_cancel.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_question_mark.xml" value="0.1205" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_scaner.xml" value="0.1205" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/ic_scanner.xml" value="0.1205" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/item_lv0.xml" value="0.13" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/item_lv1.xml" value="0.1" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/item_lv10.xml" value="0.1" />
@@ -75,11 +82,20 @@
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/item_lv7.xml" value="0.1" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/item_lv8.xml" value="0.1" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/item_lv9.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/out_line_border.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/rounded_shape.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/rounded_shape2.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/rounded_shape_10sdp.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/rounded_shape_t.xml" value="0.1" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/rounded_shape_tl.xml" value="0.1" />
-        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/fragment_inventory1.xml" value="0.25" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/drawable/rounded_shape_tr.xml" value="0.1" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/font/cairo_semibold.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/fragment_client.xml" value="0.25" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/fragment_inventory1.xml" value="0.2" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/fragment_product_info.xml" value="0.25" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/fragment_scan.xml" value="0.33" />
         <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/fragment_smart_scan.xml" value="0.33" />
-        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/item_product.xml" value="0.2914285714285714" />
+        <entry key="..\:/Users/saed/Desktop/mustakel/hopland/V 0.0.1/Android_handheld_sdk_V3.39/Example/PDAExample/app/src/main/res/layout/item_product.xml" value="0.5" />
       </map>
     </option>
   </component>
