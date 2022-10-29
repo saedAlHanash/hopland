@@ -23,7 +23,7 @@ public class AuthActivity extends AppCompatActivity {
 
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_PHONE_STATE}, 10);
-        FTH.replaceFadFragment(FC.AUTH_C, this, new AuthFragment(), FN.AUTH_FN);
+        FTH.replaceFadFragment(FC.AUTH_C, this, new AuthFragment(),FN.AUTH_FN);
     }
 
 }

@@ -2,6 +2,7 @@ package com.hopeland.pda.example.SAED.ViewModels;
 
 
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,7 +17,7 @@ public class MyViewModel extends ViewModel {
 
     Gson gson = new Gson();
     public MutableLiveData<ArrayList<All>> allLiveData = new MutableLiveData<>();
-    public MutableLiveData<Product> productLiveData = new MutableLiveData<>();
+    public MutableLiveData<Pair<Product,Boolean>> productLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> connectLiveData = new MutableLiveData<>();
     public MutableLiveData<Boolean> sendReportLiveData = new MutableLiveData<>();
 

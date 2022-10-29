@@ -41,7 +41,7 @@
             android:fontFamily="@font/cairo_bold"
             android:gravity="center"
 
-            android:text="اسم المنتج "
+            android:text="@string/product_name"
             android:textColor="@color/main_color_dark"
             android:textSize="@dimen/_18ssp" />
 
@@ -52,9 +52,9 @@
             android:layout_gravity="center"
             android:fontFamily="@font/cairo_semibold"
             android:gravity="center"
-            android:text="Epc Epc Epc Epc Epc"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
+            tools:text="Epc Epc Epc Epc Epc"
             tools:visibility="gone" />
 
         <androidx.cardview.widget.CardView
@@ -84,13 +84,14 @@
                     android:paddingTop="@dimen/_2sdp"
                     android:paddingEnd="@dimen/_2sdp"
                     android:paddingBottom="@dimen/_2sdp"
-                    android:text="المعلومات الأساسية"
+                    android:text="@string/product_info"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:baselineAligned="false"
                     android:elevation="@dimen/_2sdp"
                     android:orientation="horizontal">
 
@@ -103,6 +104,7 @@
 
 
                         <TextView
+                            android:id="@+id/stons"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/off_white"
@@ -112,9 +114,9 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="10غ"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="10غ" />
 
                         <View
                             android:layout_width="match_parent"
@@ -123,7 +125,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/material_type"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/off_white"
@@ -133,9 +135,9 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="10غ"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="10غ" />
 
                         <View
                             android:layout_width="match_parent"
@@ -144,7 +146,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/purity"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/off_white"
@@ -154,9 +156,9 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="10غ"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="10غ" />
 
                         <View
                             android:layout_width="match_parent"
@@ -165,7 +167,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textView7"
+                            android:id="@+id/total_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/off_white"
@@ -175,9 +177,9 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="10غ"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="10غ" />
 
                         <View
                             android:layout_width="match_parent"
@@ -186,7 +188,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textView6"
+                            android:id="@+id/material_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/off_white"
@@ -196,9 +198,9 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="10غ"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="10غ" />
 
                         <View
                             android:layout_width="match_parent"
@@ -207,7 +209,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textView4"
+                            android:id="@+id/purity_weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/rounded_shape_bl"
@@ -218,9 +220,9 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="10غ"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12ssp" />
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="10غ" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -241,7 +243,7 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="@string/stons"
+                            android:text="@string/stones"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -261,7 +263,7 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="نوع المعدن"
+                            android:text="@string/material_type"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -281,7 +283,7 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="النقاء"
+                            android:text="@string/purity"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -302,7 +304,7 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="الوزن الاجمالي"
+                            android:text="@string/total_weight"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -323,7 +325,7 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="وزن المعدن"
+                            android:text="@string/material_weight"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -344,7 +346,7 @@
                             android:paddingTop="@dimen/_3sdp"
                             android:paddingEnd="@dimen/_2sdp"
                             android:paddingBottom="@dimen/_3sdp"
-                            android:text="الوزن الصافي"
+                            android:text="@string/purity_weight"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp" />
 
@@ -362,14 +364,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/rounded_shape2"
+            android:background="@color/main_color_dark"
             android:fontFamily="@font/cairo_semibold"
             android:gravity="bottom|center"
             android:paddingTop="@dimen/_2sdp"
             android:paddingBottom="@dimen/_2sdp"
-            android:text="200 $"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_12ssp"
+            tools:text="200 $" />
 
 
     </LinearLayout>

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,10 @@ import android.widget.TextView;
 
 import com.hopeland.pda.example.R;
 import com.hopeland.pda.example.SAED.Adadpter.AdapterItemEpc;
+import com.hopeland.pda.example.SAED.AppConfig.FC;
+import com.hopeland.pda.example.SAED.AppConfig.FN;
+import com.hopeland.pda.example.SAED.Helpers.View.FTH;
+import com.hopeland.pda.example.SAED.UI.Fragments.ProductInfoFragment;
 import com.hopeland.pda.example.uhf.ClientActivity;
 import com.hopeland.pda.example.SAED.ViewModels.MyViewModel;
 import com.hopeland.pda.example.SAED.ViewModels.Product;
@@ -49,6 +55,9 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
     ArrayList<String> sentEpc = new ArrayList<>();
 
     MyViewModel myViewModel;
+    boolean blockSend = false;
+
+    String currentEpc;
 
     View view;
     //endregion
@@ -72,18 +81,31 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
     }
 
 
-    final androidx.lifecycle.Observer<Product> Observer = product -> {
+    final androidx.lifecycle.Observer<Pair<Product, Boolean>> Observer = pair -> {
+        blockSend = false;
         if (!isAdded())
             return;
 
-        if (product == null)
+
+
+        if (pair == null )
             return;
 
-        if (sentEpc.contains(product.epc))
+        Log.d("SAED____", ": "+pair.second);
+
+        if (!pair.second) {
+            sentEpc.add(currentEpc);
+            return;
+        }
+
+        if (sentEpc.contains(pair.first.epc))
             return;
 
-        sentEpc.add(product.epc);
-        adapter.insertItem(product);
+
+        Log.e("SAED_", "product  " + pair.first.epc);
+
+        sentEpc.add(pair.first.epc);
+        adapter.insertItem(pair.first);
     };
 
     void initView() {
@@ -189,17 +211,23 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
         if (sentEpc.contains(epc))
             return;
 
+        blockSend = true;
+
+        this.currentEpc = epc;
         myViewModel.getProduct(myActivity.socket, epc);
+
     }
 
     @Override
     public void onItemClicked(int position, ArrayList<Product> list) {
-
+        FTH.addFragmentUpFragment(FC.CLIENT_C,requireActivity(),
+                new ProductInfoFragment(list.get(position)), FN.PRODUCT_INFO_FN);
     }
 
     int typeScan;
 
     //region spinner
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         typeScan = position;

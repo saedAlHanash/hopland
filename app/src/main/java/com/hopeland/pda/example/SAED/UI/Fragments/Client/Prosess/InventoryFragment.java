@@ -18,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,6 +36,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+import info.hoang8f.android.segmented.SegmentedGroup;
 
 
 @SuppressLint("NonConstantResourceId")
@@ -55,6 +59,11 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     Button stop;
     Button report;
     ProgressBar progressBar;
+
+    SegmentedGroup segmented2;
+    RadioButton rb_warehouse;
+    RadioButton rb_hole;
+    RadioButton rb_report;
 
     //endregion
 
@@ -112,6 +121,10 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         stop = view.findViewById(R.id.stop);
         report = view.findViewById(R.id.report);
         progressBar = view.findViewById(R.id.progressIndicator);
+        segmented2 = view.findViewById(R.id.segmented2);
+        rb_warehouse = view.findViewById(R.id.rb_warehouse);
+        rb_hole = view.findViewById(R.id.rb_hole);
+        rb_report = view.findViewById(R.id.rb_report);
     }
 
     void listeners() {
@@ -139,9 +152,46 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             }
         });
 
+        segmented2.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId) {
+                case R.id.rb_warehouse: {
+                    showWarehouse();
+                    break;
+                }
+                case R.id.rb_hole: {
+                    showHole();
+                    break;
+                }
+                case R.id.rb_report: {
+                    showReport();
+                    break;
+                }
+            }
+        });
+
         read.setOnClickListener(this);
         stop.setOnClickListener(this);
         report.setOnClickListener(this);
+    }
+
+    void showReport() {
+        warehousesSpinner.setVisibility(View.GONE);
+        inventorySpinner.setVisibility(View.GONE);
+        report.setVisibility(View.VISIBLE);
+
+    }
+
+    void showWarehouse() {
+        warehousesSpinner.setVisibility(View.VISIBLE);
+        inventorySpinner.setVisibility(View.GONE);
+        report.setVisibility(View.GONE);
+
+    }
+
+    void showHole() {
+        warehousesSpinner.setVisibility(View.GONE);
+        inventorySpinner.setVisibility(View.VISIBLE);
+        report.setVisibility(View.GONE);
     }
 
     //region data socket

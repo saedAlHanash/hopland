@@ -8,6 +8,7 @@ import android.os.Message;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
     View view;
 
     ImageView imageView8;
-    public EditText epc;
+   public EditText epc;
 
     Button read;
     Button stop;
@@ -64,27 +65,28 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
         @SuppressLint("SetTextI18n")
         @Override
         public void handleMessage(Message msg) {
-            if (msg.what > 0 && msg.what <= 7) {
+            if (msg.what > 0 && msg.what <= 12) {
                 imageView8.setImageLevel(msg.what);
                 rssiTv.setText("-" + rssi + "dB");
+
+                Log.d("SAED_S", "smart scan rssi =: " + rssi);
             }
         }
     };
 
-    int rssi;
+    byte rssi;
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.read: {
 
+            case R.id.read: {
                 if (epc.getText().length() < 20) {
                     NoteMessage.showSnackBar(myActivity, "يجب ادخال ال Tag كاملا");
                     return;
                 }
 
                 myActivity.readSmart(epc.getText().toString());
-
                 break;
             }
 
@@ -121,10 +123,10 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onRead(@NotNull String epc, byte rssi) {
-
         if (!epc.equals(this.epc.getText().toString()))
             return;
 
+        Log.d("SAED_S", "onRead: sss ");
         this.rssi = rssi;
 
         if (rssi < 60) {
@@ -167,6 +169,7 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
 
         else if (rssi >= 115)
             handler.sendEmptyMessage(12);
+
 
     }
 }

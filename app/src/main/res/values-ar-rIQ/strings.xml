@@ -103,24 +103,24 @@
     <string name="uhf_default_access_pwd">00000000</string>
     <string name="scanner_trigger">Trigger</string>
     <string name="scanner_open_power_faild">open power faild!</string>
-    
+
     <!-- PSAM -->
 
     <!-- hf -->
 
-    <string name="hf_low_power_info">Low battery, please charge!</string>
+    <string name="hf_low_power_info">البطارية منخفضة, قم بشحن الهاتف!</string>
     <string name="hf_read_uid_title">Read UID:</string>
     <string name="hf_read_uid">Read UID</string>
     <string name="hf_uid">UID</string>
-    <string name="hf_block">Block:</string>
-    <string name="hf_read">Read</string>
-    <string name="hf_write">Write</string>
+    <string name="hf_block">قفل:</string>
+    <string name="hf_read">قراءة</string>
+    <string name="hf_write">كتابة</string>
     <string name="hf_suspend">Suspend</string>
     <string name="hf_reset">Reset</string>
     <string name="hf_req_mode">Request mode:</string>
     <string name="hf_read_faild">Read faild</string>
-   
-    
+
+
     <string name="hf_iso15693_rwl_title">read/write/lock:</string>
     <string name="hf_iso15693_get_tag_info">Get tag info</string>
     <string name="hf_iso15693_AFI">AFI:</string>
@@ -129,7 +129,7 @@
     <string name="hf_iso15693_DSFID">SDFID:</string>
     <string name="hf_iso15693_read_DSFID">Read DSFID</string>
     <string name="hf_iso15693_lock_DSFID">Lock DSFID</string>
-    
+
     <string name="hf_iso14443A_op_title">ISO14443A-4 Operation:</string>
     <string name="hf_iso14443A_tag_id">Tag ID:</string>
     <string name="hf_iso14443A_ack">Ack:</string>
@@ -137,7 +137,7 @@
     <string name="hf_iso14443A_APDU">APDU:</string>
     <string name="hf_iso14443A_send_APDU">APDU</string>
     <string name="hf_iso14443A_deselect">Deselect</string>
-    
+
     <string name="hf_mifare_rwl_title">read/write/block-op:</string>
     <string name="hf_mifare_positon">Position:</string>
     <string name="hf_mifare_auth_type">Auth:</string>
@@ -150,47 +150,48 @@
     <string name="hf_mifare_value_empty">write data can\'t be empty!</string>
 
 
-    <string name="continue_as_admin">Administrator</string>
-    <string name="continue_as_client">User</string>
-    <string name="not_connected">not connect</string>
+    <string name="continue_as_admin">مدير</string>
+    <string name="continue_as_client">مستخدم</string>
+    <string name="not_connected">غير متصل</string>
 
-    <string name="smart_scan">smart scan</string>
-    <string name="inventory_saed">warehouse</string>
-    <string name="scan">scan</string>
-    <string name="setting">settings</string>
+    <string name="smart_scan">البحث الذكي</string>
+    <string name="inventory_saed">المخازن</string>
+    <string name="scan">مسح</string>
+    <string name="setting">اعدادات</string>
     <string name="ip_config">ip config</string>
-    <string name="save">save</string>
-    <string name="done">done</string>
+    <string name="save">حفظ</string>
+    <string name="done">تم</string>
 
-    <string name="done_scan">scaned : </string>
-    <string name="expected">expected : </string>
-    <string name="not_found">Not found : </string>
-    <string name="undefined">undefined : </string>
-    <string name="language">language</string>
+    <string name="done_scan"> :ممسوحة</string>
+    <string name="expected"> :محددة</string>
+    <string name="not_found"> :غير موجود</string>
+    <string name="undefined"> :غير معروف</string>
+    <string name="language">اللغة</string>
 
-    <string name="single">Single</string>
-    <string name="loop">Inventory</string>
-<!--    -->
-<!--    <string name="readCard">اقرأ</string>-->
-<!--    <string name="clean">مسح</string>-->
-<!--    <string name="single">فردي</string>-->
+    <string name="single">فردي</string>
+    <string name="loop">جرد</string>
+    <!--    -->
+    <!--    <string name="readCard">اقرأ</string>-->
+    <!--    <string name="clean">مسح</string>-->
+    <!--    <string name="single">فردي</string>-->
 
-    <string name="total">total</string>
-    <string name="pure">pure</string>
-    <string name="stones">stones</string>
-    <string name="report">report</string>
-    <string name="inventory_epc">inventory epc</string>
-    <string name="stop">stop</string>
-    <string name="readCard">read Card</string>
-    <string name="clean">clean</string>
-    <string name="hole">hole</string>
-    <string name="product_name">product name</string>
-    <string name="product_info">product info</string>
-    <string name="material_type">material type</string>
-    <string name="total_weight">total weight</string>
-    <string name="material_weight">material weight</string>
-    <string name="purity_weight">purity weight</string>
-    <string name="purity">purity</string>
+    <string name="total">الاجمالي</string>
+    <string name="pure">الصافي</string>
+    <string name="stones">الأحجار</string>
+    <string name="report">تقرير</string>
+    <string name="inventory_epc">جماعي</string>
+    <string name="stop">توقف</string>
+    <string name="readCard">قراءة</string>
+    <string name="clean">مسح</string>
+    <string name="hole">الصالة</string>
+
+    <string name="product_name">اسم المنتج</string>
+    <string name="product_info">معلومات المنتج</string>
+    <string name="material_type">نوع المعدن</string>
+    <string name="total_weight">الوزن الاجمالي</string>
+    <string name="material_weight">وزن المعدن</string>
+    <string name="purity_weight">الوزن الصافي</string>
+    <string name="purity">النقاء</string>
 
 
 </resources>

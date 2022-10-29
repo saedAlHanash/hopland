@@ -22,7 +22,7 @@ public class Test extends Thread {
         synchronized (lockSend) {
 
             while (threadKill) {
-
+                Log.d("SAED___", "send: "+s) ;
                 try {
                     lockSend.wait();
                 } catch (InterruptedException ignored) {

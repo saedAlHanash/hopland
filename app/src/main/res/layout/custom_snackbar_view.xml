@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
             android:fontFamily="@font/cairo"
-            android:textColor="@android:color/white"
+            android:textColor="@color/main_color"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/view9"
@@ -40,7 +40,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="5dp"
-            android:background="@android:color/white"
+            android:background="@color/main_color"
             app:layout_constraintBottom_toBottomOf="@+id/snack_icon"
             app:layout_constraintEnd_toStartOf="@+id/snack_icon"
             app:layout_constraintTop_toTopOf="@+id/snack_icon" />
