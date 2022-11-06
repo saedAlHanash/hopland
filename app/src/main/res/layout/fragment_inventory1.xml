@@ -72,19 +72,11 @@
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".18"
-        tools:visibility="visible" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23"
+        app:layout_constraintGuide_percent="0.16"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -92,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52"
+        app:layout_constraintGuide_percent="0.46"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -100,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55"
+        app:layout_constraintGuide_percent="0.48"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -108,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.84"
+        app:layout_constraintGuide_percent="0.78"
         tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -119,85 +111,31 @@
         app:layout_constraintGuide_percent=".9"
         tools:visibility="visible" />
 
-    <info.hoang8f.android.segmented.SegmentedGroup
-        android:id="@+id/segmented2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:orientation="horizontal"
-        android:layoutDirection="ltr"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:sc_border_width="@dimen/_1sdp"
-        app:sc_corner_radius="@dimen/_50sdp"
-        app:sc_tint_color="@color/main_color_dark">
-
-        <RadioButton
-
-            android:id="@+id/rb_warehouse"
-            style="@style/RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/main_color_dark"
-            android:checked="true"
-            android:text="@string/inventory_saed" />
-
-        <RadioButton
-            android:id="@+id/rb_hole"
-            style="@style/RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/hole" />
-
-        <RadioButton
-
-            android:id="@+id/rb_report"
-            style="@style/RadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/report" />
-    </info.hoang8f.android.segmented.SegmentedGroup>
-
-    <Button
-        android:id="@+id/report"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_weight="1"
-        android:background="@drawable/button_selector"
-        android:fontFamily="@font/cairo_bold"
-        android:text="@string/report"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_12ssp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_35sdp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@drawable/rounded_shape_circle"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintTop_toTopOf="@+id/guideline4">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
         <Spinner
             android:id="@+id/warehouses_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@null"
             android:dropDownWidth="match_parent"
@@ -209,26 +147,34 @@
 
     <FrameLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_35sdp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@drawable/rounded_shape_circle"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toTopOf="@+id/guideline4">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_3sdp"
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
         <Spinner
             android:id="@+id/inventory_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@null"
             android:dropDownWidth="match_parent"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
             android:popupBackground="@drawable/rounded_shape_circle"
-            android:spinnerMode="dropdown"
-            android:visibility="gone" />
+            android:spinnerMode="dropdown" />
     </FrameLayout>
 
     <androidx.cardview.widget.CardView
@@ -251,7 +197,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_center_focus_strong_24" />
+                android:padding="@dimen/_10sdp"
+                app:srcCompat="@drawable/ic_baseline_info_24" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -305,34 +252,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ImageView
+                android:id="@+id/imageView4"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView3"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_scanner" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_done_all_24"
-                    app:tint="@color/main_color" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_weight="1"
+                android:padding="@dimen/_10sdp"
+                app:srcCompat="@drawable/ic_baseline_check_circle_24" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -389,6 +315,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:padding="@dimen/_10sdp"
                 app:srcCompat="@drawable/ic_baseline_cancel_24" />
 
             <LinearLayout
@@ -447,6 +374,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
 
+                android:padding="@dimen/_10sdp"
                 app:srcCompat="@drawable/ic_baseline_help_24" />
 
             <LinearLayout
@@ -519,6 +447,19 @@
             android:background="@drawable/button_selector"
             android:fontFamily="@font/cairo_bold"
             android:text="@string/stop"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp" />
+
+        <Button
+            android:id="@+id/report"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:fontFamily="@font/cairo_bold"
+            android:text="@string/report"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp" />

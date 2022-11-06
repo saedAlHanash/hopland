@@ -1,19 +1,15 @@
 package com.hopeland.pda.example.uhf;
 
 import com.hopeland.pda.example.R;
-import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
 import com.pda.rfid.EPCModel;
 import com.pda.rfid.IAsynchronousMessage;
 import com.port.Adapt;
 
 import android.content.Intent;
 import android.os.*;
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.Toast;
 
 /**
  * @author RFID_C UHF
@@ -27,16 +23,13 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
     private final int MSG_SHOW_UHF_VER = MSG_USER_BEG + 5;
     //private final int MSG_ENTER_LOCK = MSG_USER_BEG + 6;
 
-    EditText ip;
-    EditText port;
-
     @Override
     protected void msgProcess(Message msg) {
         Intent intent;
         switch (msg.what) {
             case MSG_ENTER_READ:
                 intent = new Intent();
-                intent.setClass(UHFMain.this, ClientActivity.class);
+                intent.setClass(UHFMain.this, ReadEPCActivity.class);
                 startActivity(intent);
                 break;
             case MSG_ENTER_READ_MATCH:
@@ -75,7 +68,7 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
             public void run() {
                 sendMessage(MSG_SHOW_WAIT, getString(R.string.str_loading));
                 sendMessage(MSG_ENTER_READ, null);
-            }
+            };
         }.start();
     }
 
@@ -85,10 +78,13 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
             return;
         }
 
-        new Thread(() -> {
-            sendMessage(MSG_SHOW_WAIT, getString(R.string.str_loading));
-            sendMessage(MSG_ENTER_READ_MATCH, null);
-        }).start();
+        new Thread() {
+            @Override
+            public void run() {
+                sendMessage(MSG_SHOW_WAIT, getString(R.string.str_loading));
+                sendMessage(MSG_ENTER_READ_MATCH, null);
+            };
+        }.start();
     }
 
     // Write
@@ -101,9 +97,7 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
             public void run() {
                 sendMessage(MSG_SHOW_WAIT, getString(R.string.str_loading));
                 sendMessage(MSG_ENTER_WRITE, null);
-            }
-
-            ;
+            };
         }.start();
     }
 
@@ -118,9 +112,7 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
             public void run() {
                 sendMessage(MSG_SHOW_WAIT, getString(R.string.str_loading));
                 sendMessage(MSG_ENTER_CONFIG, null);
-            }
-
-            ;
+            };
         }.start();
     }
 
@@ -136,7 +128,7 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
                 sendMessage(MSG_SHOW_WAIT,
                         getString(R.string.str_please_waitting));
                 String vStr = "- BaseBand: ";
-                if (UHF_Init(UHFMain.this)) {
+                if (UHF_Init( UHFMain.this)) {
                     vStr += CLReader.GetReaderBaseBandSoftVersion();
                 } else {
                     vStr += "null";
@@ -148,9 +140,7 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
                 }
                 sendMessage(MSG_SHOW_UHF_VER, vStr);
                 sendMessage(MSG_HIDE_WAIT, null);
-            }
-
-            ;
+            };
         }.start();
     }
 
@@ -159,90 +149,11 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
         finish();
     }
 
-    //save ipConfig
-    public void ipConfig(View view) {
-        saveInFile();
-    }
-
-    //region saed:
-
-    void initIpEditText() {
-        InputFilter[] filters = new InputFilter[1];
-        filters[0] = (source, start, end, dest, dstart, dend) -> {
-            if (end > start) {
-                String destTxt = dest.toString();
-                String resultingTxt = destTxt.substring(0, dstart)
-                        + source.subSequence(start, end)
-                        + destTxt.substring(dend);
-                if (!resultingTxt
-                        .matches("^\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3})?)?)?)?)?)?")) {
-                    return "";
-                } else {
-                    String[] splits = resultingTxt.split("\\.");
-                    for (String split : splits) {
-                        if (Integer.parseInt(split) > 255) {
-                            return "";
-                        }
-                    }
-                }
-            }
-            return null;
-        };
-
-        ip.setFilters(filters);
-    }
-
-    void saveInFile() {
-
-        String mIp = ip.getText().toString();
-        int mPort = Integer.parseInt(port.getText().toString());
-
-        if (mIp.isEmpty()) {
-            ip.setError("required");
-            return;
-        }
-        if (mPort == 0) {
-            port.setError("required");
-            return;
-        }
-
-        SharedPreference.getInstance(this);
-
-        SharedPreference.saveIp(mIp);
-        SharedPreference.savePort(mPort);
-
-        Toast.makeText(this, getResources().getString(R.string.done), Toast.LENGTH_SHORT).show();
-    }
-
-    void initIpAnPort() {
-
-        int mPort = SharedPreference.getPort();
-        String mIp = SharedPreference.getIp();
-
-        if (!mIp.isEmpty())
-            this.ip.setText(mIp);
-
-        if (mPort != 0)
-            this.port.setText(String.valueOf(mPort));
-    }
-
-    //endregion
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Create
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.uhf_main);
-        SharedPreference.getInstance(this);
-
-        //region saed:
-        ip = findViewById(R.id.ip);
-        port = findViewById(R.id.port);
-
-        initIpAnPort();
-        initIpEditText();
-
-        //endregion
-
         try {
             getWindow().setFlags(
                     WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
@@ -284,6 +195,5 @@ public class UHFMain extends UHFBaseActivity implements IAsynchronousMessage {
     @Override
     public void OutPutEPC(EPCModel model) {
     }
-
 
 }

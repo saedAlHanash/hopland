@@ -52,15 +52,15 @@ public class ProductInfoFragment extends Fragment {
         purity_weight = view.findViewById(R.id.purity_weight);
         price = view.findViewById(R.id.price);
 
-        product_image.setImageBitmap(product.bitmap);
-
         name.setText(product.pn);
-//        stons.setText(product.pn);
-        material_type.setText(product.wn);
-        purity.setText(product.pp);
-        total_weight.setText(product.ln);
-        material_weight.setText(product.im);
-//        purity_weight.setText(product.);
-//        price.setText(product.);
+        stons.setText(product.sto);
+        material_type.setText(product.mt_type);
+        purity.setText(product.pur);
+        total_weight.setText(product.grw);
+        material_weight.setText(product.mtw);
+        purity_weight.setText(product.ntw);
+        price.setText(product.pp);
+
+        product_image.setImageBitmap(product.bitmap);
     }
 }

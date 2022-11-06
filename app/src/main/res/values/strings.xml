@@ -181,7 +181,7 @@
     <string name="report">report</string>
     <string name="inventory_epc">inventory epc</string>
     <string name="stop">stop</string>
-    <string name="readCard">read Card</string>
+    <string name="readCard">Reading</string>
     <string name="clean">clean</string>
     <string name="hole">hole</string>
     <string name="product_name">product name</string>
@@ -192,5 +192,11 @@
     <string name="purity_weight">purity weight</string>
     <string name="purity">purity</string>
 
+    <string name="login_as_admin">Login as administrator</string>
+    <string name="login">Login</string>
+    <string name="user_name">username</string>
+    <string name="pass_worde">passWord</string>
+    <string name="wrong_user_or_Pass">Incorrect username or password</string>
+    <string name="change_langue">change Language</string>
 
 </resources>

@@ -60,7 +60,7 @@
     <string name="tv_Configration_BaseSpeed">BaseSpeed:</string>
     <string name="tv_Configration_QValue">QValue:</string>
     <string name="tv_Configration_Frequency">Frequency:</string>
-    <string name="tv_Configration_Power">Power:</string>
+    <string name="tv_Configration_Power">قوة اللاقط</string>
     <string name="tv_Configration_Ant">ANT:</string>
     <string name="tv_Configration_TagType">TagType:</string>
     <string name="btn_Get">GET</string>
@@ -163,7 +163,7 @@
     <string name="done">تم</string>
 
     <string name="done_scan"> :ممسوحة</string>
-    <string name="expected"> :محددة</string>
+    <string name="expected"> :متوقعة</string>
     <string name="not_found"> :غير موجود</string>
     <string name="undefined"> :غير معروف</string>
     <string name="language">اللغة</string>
@@ -193,5 +193,12 @@
     <string name="purity_weight">الوزن الصافي</string>
     <string name="purity">النقاء</string>
 
+
+    <string name="login_as_admin">تسجيل الدخول كمدير</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="pass_worde">كلمة المرور</string>
+    <string name="wrong_user_or_Pass">اسم مستخدم غير صحيح</string>
+    <string name="change_langue">تغيير اللغة</string>
 
 </resources>

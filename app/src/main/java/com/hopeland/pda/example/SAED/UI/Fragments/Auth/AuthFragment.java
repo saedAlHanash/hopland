@@ -51,13 +51,12 @@ public class AuthFragment extends Fragment {
         return view;
     }
 
-    private void initView() {
+    void initView() {
         login = view.findViewById(R.id.login);
         guest = view.findViewById(R.id.guest);
         languageSpinner = view.findViewById(R.id.language);
         languageIcon = view.findViewById(R.id.textView5);
     }
-
 
     void initLanguage() {
 
@@ -107,7 +106,7 @@ public class AuthFragment extends Fragment {
         });
     }
 
-    private void initSpinner() {
+    void initSpinner() {
         ArrayList<String> language = new ArrayList<>();
         language.add("العربية");
         language.add("english");
@@ -124,41 +123,14 @@ public class AuthFragment extends Fragment {
             languageSpinner.setSelection(1);
     }
 
-    private final View.OnClickListener adminListener = view -> {
+    final View.OnClickListener adminListener = view -> {
         startLoginFragment();
     };
 
-    private final View.OnClickListener guestListener = view -> {
+    final View.OnClickListener guestListener = view -> {
         startClientActivity();
     };
 
-//    private final AdapterView.OnItemSelectedListener languageListener =
-//            new AdapterView.OnItemSelectedListener() {
-//        @Override
-//        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//            switch (i) {
-//
-//                case 0:
-//                    ((TextView) view).setTextColor(getResources().getColor(R.color.gray));
-//                    break;
-//
-//                case 1: {
-//                    setLanguage("ar");
-//                    break;
-//                }
-//
-//                case 2: {
-//                    setLanguage("en");
-//                    break;
-//                }
-//            }
-//        }
-//
-//        @Override
-//        public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//        }
-//    };
 
     void startClientActivity() {
         Intent intent = new Intent(requireActivity(), ClientActivity.class);
@@ -167,7 +139,8 @@ public class AuthFragment extends Fragment {
     }
 
     void startLoginFragment() {
-        FTH.addToStakeFragment(FC.AUTH_C, requireActivity(), new LoginFragment(), FN.LOGIN_FN);
+        FTH.addToStakeFragment(FC.AUTH_C, requireActivity(),
+                new LoginFragment(), FN.LOGIN_FN);
     }
 
     void setLanguage(String lang) {

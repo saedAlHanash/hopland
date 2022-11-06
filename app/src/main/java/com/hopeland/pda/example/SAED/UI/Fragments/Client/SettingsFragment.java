@@ -1,17 +1,22 @@
 package com.hopeland.pda.example.SAED.UI.Fragments.Client;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.hopeland.pda.example.R;
 import com.hopeland.pda.example.SAED.AppConfig.SharedPreference;
+import com.hopeland.pda.example.uhf.UHFBaseActivity;
+import com.pda.rfid.uhf.UHFReader;
 
 import java.util.Hashtable;
 
@@ -21,13 +26,13 @@ public class SettingsFragment extends Fragment {
     EditText ip;
     EditText port;
     Button save;
-
+    Spinner spinner;
     View view;
 
-    private final Hashtable<Integer, Integer> mAntMap = new Hashtable<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_settings1, container, false);
 
         initViews();
@@ -45,6 +50,7 @@ public class SettingsFragment extends Fragment {
         ip = view.findViewById(R.id.ip);
         port = view.findViewById(R.id.port);
         save = view.findViewById(R.id.save);
+        spinner = view.findViewById(R.id.spinner);
     }
 
     void listeners() {
@@ -54,13 +60,34 @@ public class SettingsFragment extends Fragment {
 
     private final View.OnClickListener saveListener = v -> {
         saveInFile();
+        savePower();
     };
 
+    private void savePower() {
+        int param = spinner.getSelectedItemPosition();
+
+        if (UHFReader._Config.SetFrequency(param) == 0)
+            Button_SetPower(); // 频率功率一起改
+        else
+            Toast.makeText(requireActivity(), getString(R.string.str_faild), Toast.LENGTH_SHORT).show();
+
+    }
+
+    // SerPower
+    public void Button_SetPower() {
+
+        int antCount = 1;
+        int rt = UHFReader._Config.SetANTPowerParam(antCount, spinner.getSelectedItemPosition());
+
+        if (rt == 0)
+            Toast.makeText(requireActivity(), getString(R.string.str_success), Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(requireActivity(), getString(R.string.str_faild), Toast.LENGTH_SHORT).show();
 
 
+    }
 
     //saed :
-
     void initIpEditText() {
         InputFilter[] filters = new InputFilter[1];
         filters[0] = (source, start, end, dest, dstart, dend) -> {
