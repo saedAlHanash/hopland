@@ -23,7 +23,6 @@
 
 
     <array name="language">
-        <item>@string/language</item>
         <item>العربية</item>
         <item>English</item>
     </array>

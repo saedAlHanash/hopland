@@ -22,6 +22,24 @@
     <item
         android:drawable="@drawable/item_lv6"
         android:maxLevel="6" />
+    <item
+        android:drawable="@drawable/item_lv7"
+        android:maxLevel="7" />
+    <item
+        android:drawable="@drawable/item_lv8"
+        android:maxLevel="8" />
+    <item
+        android:drawable="@drawable/item_lv9"
+        android:maxLevel="9" />
+    <item
+        android:drawable="@drawable/item_lv10"
+        android:maxLevel="10" />
+    <item
+        android:drawable="@drawable/item_lv11"
+        android:maxLevel="11" />
+    <item
+        android:drawable="@drawable/item_lv12"
+        android:maxLevel="12" />
 
 
 </level-list>

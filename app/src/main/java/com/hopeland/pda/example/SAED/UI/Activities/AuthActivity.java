@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.hopeland.pda.example.R;
 import com.hopeland.pda.example.SAED.AppConfig.FC;
+import com.hopeland.pda.example.SAED.AppConfig.FN;
 import com.hopeland.pda.example.SAED.Helpers.View.FTH;
 import com.hopeland.pda.example.SAED.UI.Fragments.Auth.AuthFragment;
 
@@ -22,7 +23,7 @@ public class AuthActivity extends AppCompatActivity {
 
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_PHONE_STATE}, 10);
-        FTH.replaceFadFragment(FC.AUTH_C, this, new AuthFragment());
+        FTH.replaceFadFragment(FC.AUTH_C, this, new AuthFragment(),FN.AUTH_FN);
     }
 
 }

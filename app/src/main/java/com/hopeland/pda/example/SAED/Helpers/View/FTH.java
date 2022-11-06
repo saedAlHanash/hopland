@@ -33,37 +33,38 @@ public class FTH {
     }
 
     public static void replaceFadFragment(@IdRes int container,
-                                            FragmentActivity fragmentActivity,
-                                            Fragment fragment) {
+                                          FragmentActivity fragmentActivity,
+                                          Fragment fragment,
+                                          String name) {
         ft = fragmentActivity.
                 getSupportFragmentManager().
                 beginTransaction().
                 setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
-        ft.replace(container, fragment);
+        ft.replace(container, fragment,name);
         ft.commit();
     }
 
     public static void replaceSlidFragmentTag(@IdRes int container,
-                                          FragmentActivity fragmentActivity,
-                                          Fragment fragment,String name) {
+                                              FragmentActivity fragmentActivity,
+                                              Fragment fragment, String name) {
         ft = fragmentActivity.
                 getSupportFragmentManager().
                 beginTransaction().
                 setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
 
-        ft.replace(container, fragment,name);
+        ft.replace(container, fragment, name);
         ft.commit();
     }
 
     public static void replaceFadFragmentTag(@IdRes int container,
-                                          FragmentActivity fragmentActivity,
-                                          Fragment fragment,String name) {
+                                             FragmentActivity fragmentActivity,
+                                             Fragment fragment, String name) {
         ft = fragmentActivity.
                 getSupportFragmentManager().
                 beginTransaction().
                 setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
 
-        ft.replace(container, fragment,name);
+        ft.replace(container, fragment, name);
         ft.commit();
     }
 
@@ -82,7 +83,7 @@ public class FTH {
                 beginTransaction().
                 setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
 
-        ft.replace(container, fragment,name);
+        ft.replace(container, fragment, name);
         ft.attach(fragment);
         ft.addToBackStack(name);
         ft.commit();
@@ -103,7 +104,7 @@ public class FTH {
                 beginTransaction().
                 setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
 
-        ft.add(container, fragment,name);
+        ft.add(container, fragment, name);
         ft.attach(fragment);
         ft.addToBackStack(name);
         ft.commit();
@@ -118,7 +119,7 @@ public class FTH {
                 beginTransaction().
                 setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
 
-        ft.add(container, fragment,name);
+        ft.add(container, fragment, name);
         ft.attach(fragment);
         ft.addToBackStack(name);
         ft.commit();
@@ -162,6 +163,18 @@ public class FTH {
                         getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
 
         return fragmentManager.findFragmentByTag(fragmentTag);
+    }
+
+    /**
+     * get latest fragment on back Stack
+     *
+     * @param fragmentActivity FragmentActivity
+     * @return fragment with type {@link Fragment}
+     */
+    public static Fragment getFragmentByName(FragmentActivity fragmentActivity, String name) {
+
+        return fragmentActivity.getSupportFragmentManager().findFragmentByTag(name);
+
     }
 
     /**

@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/_150sdp"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/_3sdp"
     android:layout_marginTop="@dimen/_5sdp"
@@ -54,6 +54,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:visibility="gone"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="@dimen/_5sdp">
@@ -74,7 +75,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_shape_tr"
+                        android:background="@drawable/rounded_shape_tl"
                         android:fontFamily="@font/cairo"
                         android:gravity="center"
                         android:paddingStart="@dimen/_5sdp"
@@ -88,7 +89,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_shape_br"
+                        android:background="@drawable/rounded_shape_bl"
                         android:backgroundTint="@color/off_white"
                         android:fontFamily="@font/cairo"
                         android:gravity="center"
@@ -149,21 +150,21 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_shape_tl"
+                        android:background="@drawable/rounded_shape_tr"
                         android:fontFamily="@font/cairo"
                         android:gravity="center"
                         android:paddingStart="@dimen/_5sdp"
                         android:paddingTop="@dimen/_2sdp"
                         android:paddingEnd="@dimen/_2sdp"
                         android:paddingBottom="@dimen/_2sdp"
-                        android:text="@string/stons"
+                        android:text="@string/stones"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10ssp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_shape_bl"
+                        android:background="@drawable/rounded_shape_br"
                         android:backgroundTint="@color/off_white"
                         android:fontFamily="@font/cairo"
                         android:gravity="center"

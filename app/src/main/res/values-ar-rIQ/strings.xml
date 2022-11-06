@@ -1,0 +1,204 @@
+<resources>
+
+    <string name="str_please_waitting">please wait.&#8230;</string>
+    <string name="str_loading">loading.&#8230;</string>
+    <string name="str_busy">busy!</string>
+    <string name="str_success">success</string>
+    <string name="str_faild">faild</string>
+    <string name="str_configure">configure</string>
+    <string name="str_ok">OK</string>
+    <string name="str_cancel">Cancel</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_back">Back</string>
+    <string name="str_exit">Exit</string>
+
+    <!-- MenuMain -->
+    <string name="tv_MainMenu_Title">PDA Example</string>
+    <string name="btn_MainMenu_UHF">UHF</string>
+    <string name="btn_MainMenu_HF">HF</string>
+    <string name="btn_MainMenu_SerialNumber">SerialNumber</string>
+    <string name="btn_MainMenu_Scan">Scanner</string>
+    <string name="btn_MainMenu_Version">Version</string>
+    <string name="btn_ip_config">save ip</string>
+    <string name="btn_MainMenu_DLT">DLT</string>
+
+    <!-- UHF Menu -->
+    <string name="btn_UHFMenu_Read">Read-Test</string>
+    <string name="btn_UHFMenu_Read_Matching">Read-Matching</string>
+    <string name="btn_UHFMenu_Write">Write-Test</string>
+    <string name="btn_UHFMenu_Configration">Configration</string>
+
+    <!-- UHF Read -->
+    <string name="app_name">PDA Example</string>
+    <string name="List_TagID">EPC</string>
+    <string name="List_ReadCount">Count</string>
+    <string name="Tag_Time">Time:0 S </string>
+    <string name="Tag_Count">Total:0</string>
+    <string name="Tag_ReadTotalCount">SP:0 T/S</string>
+    <string name="btn_read">Start</string>
+    <string name="btn_read_stop">Stop</string>
+    <string name="Clear_Tags">Clear</string>
+    <string name="tv_Read_Title">Read EPC</string>
+    <string name="uhf_please_stop">Please stop!</string>
+    <string name="uhf_low_power_info">Low battery, please charge!</string>
+    <string name="uhf_read_power_over">The main power supply is being used, UHF power should not exceed 25dBm!</string>
+    <string name="uhf_data_error">Data error!</string>
+    <string name="uhf_data_len_error">The length of AccessPassword must be eight!</string>
+    <string name="uhf_6b_not_support_match_mode">The 6B tag does not support match read!</string>
+    <!-- UHF Write -->
+    <string name="tv_Write_MatchTitle">Match Param:</string>
+    <string name="tv_Write_MatchTID">TID:</string>
+    <string name="tv_Write_AccessPassword">AccessPassword:</string>
+    <string name="tv_Write_WriteTitle">Write Data:</string>
+    <string name="tv_Write_WriteData">Data:</string>
+    <string name="tv_Write_WriteType">Type:</string>
+    <string name="btn_Write_ReadMatch">Read Match Tag</string>
+    <string name="btn_Write_WriteData">Write Tag</string>
+    <!-- UHF Lock -->
+
+    <!-- Configration -->
+    <string name="tv_Configration_BaseSpeed">BaseSpeed:</string>
+    <string name="tv_Configration_QValue">QValue:</string>
+    <string name="tv_Configration_Frequency">Frequency:</string>
+    <string name="tv_Configration_Power">قوة اللاقط</string>
+    <string name="tv_Configration_Ant">ANT:</string>
+    <string name="tv_Configration_TagType">TagType:</string>
+    <string name="btn_Get">GET</string>
+    <string name="btn_Set">SET</string>
+    <string name="btn_ReadTime">ReadTime(ms):</string>
+    <string name="btn_StopTime">StopTime(ms): </string>
+    <string name="btn_Restore">RESTORE</string>
+    <string name="btn_CARRIER">CARRIER</string>
+
+
+    <!-- UHF Read_matching -->
+    <string name="uhf_please_input_match_value">Please enter the matching value</string>
+    <string name="Tag_Time_matching">Time:0 S </string>
+    <string name="Tag_Count_matching">Total:0</string>
+    <string name="Tag_ReadTotalCount_matching">SP:0 T/S</string>
+    <string name="btn_read_matching">Start</string>
+    <string name="Clear_Tags_matching">Clear</string>
+    <string name="tv_Read_Title_matching">Read Matching</string>
+
+    <!-- HF -->
+    <string name="btn_HFMenu_ISO15693">ISO15693</string>
+    <string name="btn_HFMenu_ISO14443A">ISO14443A</string>
+    <string name="btn_HFMenu_Mifare">Mifare</string>
+    <string name="btn_HFMenu_Version">Version</string>
+    <string name="waiting">Waiting&#8230;</string>
+
+    <!-- TestPowerUpDown -->
+    <string name="com_recv">RECV Data:</string>
+    <string name="com_send">Send Data:</string>
+    <string name="str_btn_com_open">Open</string>
+    <string name="str_btn_com_close">Close</string>
+    <string name="str_btn_com_work">Work</string>
+    <string name="str_btn_com_stop">Stop</string>
+    <string name="text_com_port">Port:</string>
+    <string name="text_com_speed">Speed:</string>
+    <string name="text_com_parity">Parity:</string>
+    <string name="text_com_mode">Mode:</string>
+    <string name="STR_FREE_SEND">Free Send</string>
+
+    <string name="uhf_default_access_pwd">00000000</string>
+    <string name="scanner_trigger">Trigger</string>
+    <string name="scanner_open_power_faild">open power faild!</string>
+
+    <!-- PSAM -->
+
+    <!-- hf -->
+
+    <string name="hf_low_power_info">البطارية منخفضة, قم بشحن الهاتف!</string>
+    <string name="hf_read_uid_title">Read UID:</string>
+    <string name="hf_read_uid">Read UID</string>
+    <string name="hf_uid">UID</string>
+    <string name="hf_block">قفل:</string>
+    <string name="hf_read">قراءة</string>
+    <string name="hf_write">كتابة</string>
+    <string name="hf_suspend">Suspend</string>
+    <string name="hf_reset">Reset</string>
+    <string name="hf_req_mode">Request mode:</string>
+    <string name="hf_read_faild">Read faild</string>
+
+
+    <string name="hf_iso15693_rwl_title">read/write/lock:</string>
+    <string name="hf_iso15693_get_tag_info">Get tag info</string>
+    <string name="hf_iso15693_AFI">AFI:</string>
+    <string name="hf_iso15693_read_AFI">Read AFI</string>
+    <string name="hf_iso15693_lock_AFI">Lock AFI</string>
+    <string name="hf_iso15693_DSFID">SDFID:</string>
+    <string name="hf_iso15693_read_DSFID">Read DSFID</string>
+    <string name="hf_iso15693_lock_DSFID">Lock DSFID</string>
+
+    <string name="hf_iso14443A_op_title">ISO14443A-4 Operation:</string>
+    <string name="hf_iso14443A_tag_id">Tag ID:</string>
+    <string name="hf_iso14443A_ack">Ack:</string>
+    <string name="hf_iso14443A_RATS_commond">RATS Commond</string>
+    <string name="hf_iso14443A_APDU">APDU:</string>
+    <string name="hf_iso14443A_send_APDU">APDU</string>
+    <string name="hf_iso14443A_deselect">Deselect</string>
+
+    <string name="hf_mifare_rwl_title">read/write/block-op:</string>
+    <string name="hf_mifare_positon">Position:</string>
+    <string name="hf_mifare_auth_type">Auth:</string>
+    <string name="hf_mifare_key_type">Key:</string>
+    <string name="hf_mifare_block_op">Block-Op:</string>
+    <string name="hf_mifare_trasmit_block">TransBlock:</string>
+    <string name="hf_mifare_key">Key:</string>
+    <string name="hf_mifare_value">Value:</string>
+    <string name="hf_mifare_do_block_op">Block-Op</string>
+    <string name="hf_mifare_value_empty">write data can\'t be empty!</string>
+
+
+    <string name="continue_as_admin">مدير</string>
+    <string name="continue_as_client">مستخدم</string>
+    <string name="not_connected">غير متصل</string>
+
+    <string name="smart_scan">البحث الذكي</string>
+    <string name="inventory_saed">المخازن</string>
+    <string name="scan">مسح</string>
+    <string name="setting">اعدادات</string>
+    <string name="ip_config">ip config</string>
+    <string name="save">حفظ</string>
+    <string name="done">تم</string>
+
+    <string name="done_scan"> :ممسوحة</string>
+    <string name="expected"> :متوقعة</string>
+    <string name="not_found"> :غير موجود</string>
+    <string name="undefined"> :غير معروف</string>
+    <string name="language">اللغة</string>
+
+    <string name="single">فردي</string>
+    <string name="loop">جرد</string>
+    <!--    -->
+    <!--    <string name="readCard">اقرأ</string>-->
+    <!--    <string name="clean">مسح</string>-->
+    <!--    <string name="single">فردي</string>-->
+
+    <string name="total">الاجمالي</string>
+    <string name="pure">الصافي</string>
+    <string name="stones">الأحجار</string>
+    <string name="report">تقرير</string>
+    <string name="inventory_epc">جماعي</string>
+    <string name="stop">توقف</string>
+    <string name="readCard">قراءة</string>
+    <string name="clean">مسح</string>
+    <string name="hole">الصالة</string>
+
+    <string name="product_name">اسم المنتج</string>
+    <string name="product_info">معلومات المنتج</string>
+    <string name="material_type">نوع المعدن</string>
+    <string name="total_weight">الوزن الاجمالي</string>
+    <string name="material_weight">وزن المعدن</string>
+    <string name="purity_weight">الوزن الصافي</string>
+    <string name="purity">النقاء</string>
+
+
+    <string name="login_as_admin">تسجيل الدخول كمدير</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="pass_worde">كلمة المرور</string>
+    <string name="wrong_user_or_Pass">اسم مستخدم غير صحيح</string>
+    <string name="change_langue">تغيير اللغة</string>
+
+</resources>

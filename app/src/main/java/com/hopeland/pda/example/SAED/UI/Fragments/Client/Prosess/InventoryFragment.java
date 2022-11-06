@@ -1,15 +1,10 @@
 package com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess;
 
 import android.annotation.SuppressLint;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,14 +16,16 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+
 import com.hopeland.pda.example.R;
 import com.hopeland.pda.example.SAED.Helpers.NoteMessage;
 import com.hopeland.pda.example.SAED.Helpers.system.HardWar;
-import com.hopeland.pda.example.uhf.ClientActivity;
 import com.hopeland.pda.example.SAED.ViewModels.All;
 import com.hopeland.pda.example.SAED.ViewModels.MyViewModel;
 import com.hopeland.pda.example.SAED.ViewModels.Report;
-
+import com.hopeland.pda.example.uhf.ClientActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -87,7 +84,8 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
 
     @Override
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         myActivity = (ClientActivity) requireActivity();
         myViewModel = myActivity.myViewModel;
         view = inflater.inflate(R.layout.fragment_inventory1, container, false);
@@ -111,6 +109,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         stop = view.findViewById(R.id.stop);
         report = view.findViewById(R.id.report);
         progressBar = view.findViewById(R.id.progressIndicator);
+
     }
 
     void listeners() {
@@ -137,6 +136,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
 
             }
         });
+
 
         read.setOnClickListener(this);
         stop.setOnClickListener(this);

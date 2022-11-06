@@ -155,7 +155,7 @@
     <string name="not_connected">not connect</string>
 
     <string name="smart_scan">smart scan</string>
-    <string name="inventory_saed">warehouse inventory</string>
+    <string name="inventory_saed">warehouse</string>
     <string name="scan">scan</string>
     <string name="setting">settings</string>
     <string name="ip_config">ip config</string>
@@ -175,14 +175,28 @@
 <!--    <string name="clean">مسح</string>-->
 <!--    <string name="single">فردي</string>-->
 
-    <string name="total">الاجمالي</string>
-    <string name="pure">الصافي</string>
-    <string name="stons">الأحجار</string>
-    <string name="report">تقرير</string>
-    <string name="inventory_epc">جماعي</string>
-    <string name="stop">توقف</string>
-    <string name="readCard">اقرأ</string>
-    <string name="clean">مسح</string>
+    <string name="total">total</string>
+    <string name="pure">pure</string>
+    <string name="stones">stones</string>
+    <string name="report">report</string>
+    <string name="inventory_epc">inventory epc</string>
+    <string name="stop">stop</string>
+    <string name="readCard">Reading</string>
+    <string name="clean">clean</string>
+    <string name="hole">hole</string>
+    <string name="product_name">product name</string>
+    <string name="product_info">product info</string>
+    <string name="material_type">material type</string>
+    <string name="total_weight">total weight</string>
+    <string name="material_weight">material weight</string>
+    <string name="purity_weight">purity weight</string>
+    <string name="purity">purity</string>
 
+    <string name="login_as_admin">Login as administrator</string>
+    <string name="login">Login</string>
+    <string name="user_name">username</string>
+    <string name="pass_worde">passWord</string>
+    <string name="wrong_user_or_Pass">Incorrect username or password</string>
+    <string name="change_langue">change Language</string>
 
 </resources>
