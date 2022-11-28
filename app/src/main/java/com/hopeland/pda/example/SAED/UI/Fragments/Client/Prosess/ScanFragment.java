@@ -32,6 +32,8 @@ import com.hopeland.pda.example.SAED.ViewModels.Product;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 
 @SuppressLint("NonConstantResourceId")
@@ -46,18 +48,20 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
     Spinner spinnerTypeScan;
     TextView typeScanTv;
 
+
     //region base
 
     RecyclerView recyclerView;
 
     AdapterItemEpc adapter;
 
+    String currentEpc;
+
     ArrayList<String> sentEpc = new ArrayList<>();
+    ArrayList<String> scannedEpc = new ArrayList<>();
 
     MyViewModel myViewModel;
-    boolean blockSend = false;
 
-    String currentEpc;
 
     View view;
     //endregion
@@ -82,30 +86,22 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
 
 
     final androidx.lifecycle.Observer<Pair<Product, Boolean>> Observer = pair -> {
-        blockSend = false;
         if (!isAdded())
             return;
 
-
-
-        if (pair == null )
+        if (pair == null)
             return;
-
-        Log.d("SAED____", ": "+pair.second);
 
         if (!pair.second) {
-            sentEpc.add(currentEpc);
-            return;
-        }
+            Product product = new Product();
+            product.epc = currentEpc;
+            product.wn = getString(R.string.unknown_product);
 
-        if (sentEpc.contains(pair.first.epc))
-            return;
+            adapter.insertItem(product);
+        } else
+            adapter.insertItem(pair.first);
 
-
-        Log.e("SAED_", "product  " + pair.first.epc);
-
-        sentEpc.add(pair.first.epc);
-        adapter.insertItem(pair.first);
+        send();
     };
 
     void initView() {
@@ -159,12 +155,13 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
             }
 
             case R.id.clean: {
+
                 myActivity.stop();
 
                 if (myViewModel.productLiveData != null)
                     myViewModel.productLiveData.setValue(null);
 
-                sentEpc.clear();
+                scannedEpc.clear();
 
                 adapter.setAndRefresh(new ArrayList<>());
 
@@ -205,33 +202,54 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
         myActivity.stop();
     }
 
+    boolean blockSend = false;
+
     @Override
     public void onRead(@NotNull String epc, byte rssi) {
-
-        if (sentEpc.contains(epc))
+        if (scannedEpc.contains(epc))
             return;
+        scannedEpc.add(epc);
+
+        queue.offer(epc);
+
+        if (blockSend)
+            return;
+
+        send();
+    }
+
+    Queue<String> queue = new PriorityQueue<>();
+
+    public void send() {
 
         blockSend = true;
 
-        this.currentEpc = epc;
-        myViewModel.getProduct(myActivity.socket, epc);
+        if (queue.isEmpty()) {
+            blockSend = false;
+            return;
+        }
 
+        currentEpc = queue.poll();
+
+        myViewModel.getProduct(myActivity.socket, currentEpc);
     }
 
     @Override
     public void onItemClicked(int position, ArrayList<Product> list) {
-        FTH.addFragmentUpFragment(FC.CLIENT_C,requireActivity(),
+        Log.d(TAG, "onItemClicked: product clicked ");
+        if (list.get(position).wn.equals(getString(R.string.unknown_product)))
+            return;
+
+        FTH.addFragmentUpFragment(FC.CLIENT_C, requireActivity(),
                 new ProductInfoFragment(list.get(position)), FN.PRODUCT_INFO_FN);
     }
 
-    int typeScan;
+    private static final String TAG = "ScanFragment";
 
     //region spinner
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        typeScan = position;
-
         if (position == 0)
             typeScanTv.setText(getResources().getString(R.string.single));
         else
@@ -245,5 +263,6 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
 
 
     //endregion
+
 
 }

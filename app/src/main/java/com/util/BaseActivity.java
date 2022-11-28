@@ -761,7 +761,7 @@ public class BaseActivity extends AppCompatActivity {
 						WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 						WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			} catch (Exception ex) {
-				//Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+				////log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 			}
 		} else {
 //			if (wakeLock != null) {
@@ -773,7 +773,7 @@ public class BaseActivity extends AppCompatActivity {
 						0,
 						WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			} catch (Exception ex) {
-				//Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+				////log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 			}
 		}
 	}

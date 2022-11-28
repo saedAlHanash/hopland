@@ -51,7 +51,7 @@ public class MenuActivity extends BaseActivity {
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		} catch (Exception ex) {
-			Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+			//log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 		}
 
 		showCustomBar(getString(R.string.btn_MainMenu_DLT),

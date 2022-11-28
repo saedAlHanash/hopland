@@ -55,10 +55,13 @@ public class AdapterItemEpc extends RecyclerView.Adapter<AdapterItemEpc.Holder> 
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.epc.setText(getItem(position).epc);
-        holder.name.setText(getItem(position).pn);
-        holder.price.setText(getItem(position).wn);
-        holder.imageView9.setImageBitmap(getItem(position).bitmap);
+
+        Product item = getItem(position);
+
+        holder.epc.setText(item.epc);
+        holder.name.setText(item.pn);
+        holder.price.setText(item.wn);
+        holder.imageView9.setImageBitmap(item.getImageThump());
     }
 
     @Override
@@ -80,6 +83,11 @@ public class AdapterItemEpc extends RecyclerView.Adapter<AdapterItemEpc.Holder> 
             name = itemView.findViewById(R.id.name);
             epc = itemView.findViewById(R.id.epc);
             price = itemView.findViewById(R.id.price);
+            itemView.setOnClickListener(view -> {
+                if (listener == null)
+                    return;
+                listener.onItemClicked(getAdapterPosition(), list);
+            });
         }
     }
 

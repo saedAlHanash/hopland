@@ -69,6 +69,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     ArrayList<All.Epc> listEpc;
 
     ArrayList<String> listStringEpc = new ArrayList<>();
+    ArrayList<String> listStringEpc1 = new ArrayList<>();
     ArrayList<String> scannedList = new ArrayList<>();
     ArrayList<String> undefinedList = new ArrayList<>();
 
@@ -214,8 +215,10 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         if (listEpc == null)
             return;
 
-        for (All.Epc epc : listEpc)
+        for (All.Epc epc : listEpc) {
             listStringEpc.add(epc.epc);
+            listStringEpc1.add(epc.epc);
+        }
 
         Log.d(TAG, "initListEpc: " + listEpc);
         expected.setText(String.valueOf(listEpc.size()));
@@ -231,16 +234,19 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0: {
+                    Log.d(TAG, "handleMessage: message 0");
                     scanned.setText(String.valueOf(scannedList.size()));
                     notFound.setText(String.valueOf(listStringEpc.size()));
                     break;
                 }
                 case 1: {
+                    Log.d(TAG, "handleMessage: message 1");
                     undefined.setText(String.valueOf(undefinedList.size()));
                     notFound.setText(String.valueOf(listStringEpc.size()));
                     break;
                 }
                 case 2: {
+                    Log.d(TAG, "handleMessage: message 2");
                     NoteMessage.showSnackBar(myActivity, "تم قراءة جميع العناصر المتوقعة وإيقاف المسح");
                     break;
                 }
@@ -298,7 +304,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             endLoading();
 
             if (doneSend)
-                NoteMessage.showSnackBar(myActivity, "تم ارسال التقرير بنجاح");
+                NoteMessage.showSnackBar(myActivity, getString(R.string.done_send_report));
             else
                 NoteMessage.showSnackBar(myActivity, "format error ");
 
@@ -313,7 +319,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         report.setLid(listLocations.get(inventorySpinner.getSelectedItemPosition()).id);
         report.setUsr(HardWar.getIMEINumber(myActivity));
 
-        report.setEpcs1(new ArrayList<>());
+        report.setEpcs1(listStringEpc1);
         report.setEpcs2(scannedList);
         report.setEpcs3(undefinedList);
         report.setEpcs4(listStringEpc);
@@ -359,13 +365,13 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             return;
         }
 
+
         if (listStringEpc.contains(epc)) {
             scannedList.add(epc);
             listStringEpc.remove(epc);
-
             handler.sendEmptyMessage(0);
 
-        } else if (!undefinedList.contains(epc)) {
+        } else if (!undefinedList.contains(epc) && !scannedList.contains(epc)) {
             undefinedList.add(epc);
             handler.sendEmptyMessage(1);
         }

@@ -69,7 +69,7 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
                 imageView8.setImageLevel(msg.what);
                 rssiTv.setText("-" + rssi + "dB");
 
-                Log.d("SAED_S", "smart scan rssi =: " + rssi);
+                //log.d("SAED_S", "smart scan rssi =: " + rssi);
             }
         }
     };
@@ -126,7 +126,7 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
         if (!epc.equals(this.epc.getText().toString()))
             return;
 
-        Log.d("SAED_S", "onRead: sss ");
+        //log.d("SAED_S", "onRead: sss ");
         this.rssi = rssi;
 
         if (rssi < 60) {
