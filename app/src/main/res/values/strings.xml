@@ -103,7 +103,7 @@
     <string name="uhf_default_access_pwd">00000000</string>
     <string name="scanner_trigger">Trigger</string>
     <string name="scanner_open_power_faild">open power faild!</string>
-    
+
     <!-- PSAM -->
 
     <!-- hf -->
@@ -119,8 +119,8 @@
     <string name="hf_reset">Reset</string>
     <string name="hf_req_mode">Request mode:</string>
     <string name="hf_read_faild">Read faild</string>
-   
-    
+
+
     <string name="hf_iso15693_rwl_title">read/write/lock:</string>
     <string name="hf_iso15693_get_tag_info">Get tag info</string>
     <string name="hf_iso15693_AFI">AFI:</string>
@@ -129,7 +129,7 @@
     <string name="hf_iso15693_DSFID">SDFID:</string>
     <string name="hf_iso15693_read_DSFID">Read DSFID</string>
     <string name="hf_iso15693_lock_DSFID">Lock DSFID</string>
-    
+
     <string name="hf_iso14443A_op_title">ISO14443A-4 Operation:</string>
     <string name="hf_iso14443A_tag_id">Tag ID:</string>
     <string name="hf_iso14443A_ack">Ack:</string>
@@ -137,7 +137,7 @@
     <string name="hf_iso14443A_APDU">APDU:</string>
     <string name="hf_iso14443A_send_APDU">APDU</string>
     <string name="hf_iso14443A_deselect">Deselect</string>
-    
+
     <string name="hf_mifare_rwl_title">read/write/block-op:</string>
     <string name="hf_mifare_positon">Position:</string>
     <string name="hf_mifare_auth_type">Auth:</string>
@@ -170,10 +170,10 @@
 
     <string name="single">Single</string>
     <string name="loop">Inventory</string>
-<!--    -->
-<!--    <string name="readCard">اقرأ</string>-->
-<!--    <string name="clean">مسح</string>-->
-<!--    <string name="single">فردي</string>-->
+    <!--    -->
+    <!--    <string name="readCard">اقرأ</string>-->
+    <!--    <string name="clean">مسح</string>-->
+    <!--    <string name="single">فردي</string>-->
 
     <string name="total">total</string>
     <string name="pure">pure</string>
@@ -198,5 +198,8 @@
     <string name="pass_worde">passWord</string>
     <string name="wrong_user_or_Pass">Incorrect username or password</string>
     <string name="change_langue">change Language</string>
+
+    <string name="unknown_product">Unknown product!</string>
+    <string name="done_send_report">Done send report</string>
 
 </resources>

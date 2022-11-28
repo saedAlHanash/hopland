@@ -59,7 +59,7 @@ public class UHFBaseActivity extends BaseActivity {
 				rt = true;
 			}
 		} catch (Exception ex) {
-			Log.d("debug", "On the UHF electric abnormal:" + ex.getMessage());
+			//log.d("debug", "On the UHF electric abnormal:" + ex.getMessage());
 		}
 		return rt;
 	}
@@ -82,7 +82,7 @@ public class UHFBaseActivity extends BaseActivity {
 	protected void UHF_GetReaderProperty() {
 		//String propertyStr = CLReader.GetReaderProperty();
         String propertyStr = UHFReader._Config.GetReaderProperty();
-		//Log.d("Debug", "Get Reader Property:" + propertyStr);
+		////log.d("Debug", "Get Reader Property:" + propertyStr);
 		String[] propertyArr = propertyStr.split("\\|");
 		HashMap<Integer, Integer> hm_Power = new HashMap<Integer, Integer>() {
 			{
@@ -99,10 +99,10 @@ public class UHFBaseActivity extends BaseActivity {
 				int powerIndex = Integer.parseInt(propertyArr[2]);
 				_NowAntennaNo = hm_Power.get(powerIndex);
 			} catch (Exception ex) {
-				Log.d("Debug", "Get Reader Property failure and conversion failed!");
+				//log.d("Debug", "Get Reader Property failure and conversion failed!");
 			}
 		} else {
-			Log.d("Debug", "Get Reader Property failure");
+			//log.d("Debug", "Get Reader Property failure");
 		}
 	}
 
@@ -116,16 +116,16 @@ public class UHFBaseActivity extends BaseActivity {
         String[] arrRT = searchRT.split("\\|");
 		if (arrRT.length >= 2) {
 			int nowUpDataTime = Integer.parseInt(arrRT[0]);
-			Log.d("Debug", "Check the label to upload time:" + nowUpDataTime);
+			//log.d("Debug", "Check the label to upload time:" + nowUpDataTime);
 			if (_UpDataTime != nowUpDataTime) {
 				//CLReader.SetTagUpdateParam("1," + _UpDataTime); // Set the tag repeat upload time to 20ms
                 UHFReader._Config.SetTagUpdateParam(_UpDataTime,0);//RSSIFilter
-				Log.d("Debug", "Sets the label upload time...");
+				//log.d("Debug", "Sets the label upload time...");
 			} else {
 
 			}
 		} else {
-			Log.d("Debug", "Query tags while uploading failure...");
+			//log.d("Debug", "Query tags while uploading failure...");
 		}
 	}
 

@@ -104,7 +104,7 @@ public class ReadMifareActivity extends BaseActivity implements
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		} catch (Exception ex) {
-			Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+			//log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 		}
 
 		showCustomBar(getString(R.string.btn_HFMenu_Mifare),
@@ -361,7 +361,7 @@ public class ReadMifareActivity extends BaseActivity implements
 		try {
 			sendMessage(msgType, model._EPC);
 		} catch (Exception ex) {
-			Log.d("Debug", "Read the tag serial number exception:" + ex.getMessage());
+			//log.d("Debug", "Read the tag serial number exception:" + ex.getMessage());
 		}
 	}
 

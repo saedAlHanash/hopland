@@ -210,6 +210,7 @@ public class ClientActivity extends UHFBaseActivity implements
                     handler.sendEmptyMessage(401);
                     return;
                 }
+
                 if (message.trim().equals("404"))
                     myViewModel.productLiveData.postValue(new Pair<>(null, false));
 
@@ -350,8 +351,10 @@ public class ClientActivity extends UHFBaseActivity implements
     //region process
 
     int x;
-    int[] rssis = new int[10];
+    byte rssis = 1;
 
+    byte s = 1;
+    boolean d = true;
 
     // Start reading tag
     public void read() {
@@ -359,12 +362,23 @@ public class ClientActivity extends UHFBaseActivity implements
         if (onReadTag == null)
             return;
 
+//        for (int i = 0; i < 10; i++) {
+//            onReadTag.onRead("saed"+i, s);
+//            Log.d(TAG, "read: " + i);
+//        }
+//
+//        if (d)
+//            return;
+
 //        x += 1;
 //
 //        if (x == 2)
-//            onReadTag.onRead("00242540" + x, rssis[x]);
+//            onReadTag.onRead("00242540" + x, rssis);
 //        else
-//            onReadTag.onRead("000" + x, rssis[x]);
+//            onReadTag.onRead("000" + x, rssis);
+//
+//        if (d)
+//            return;
 
         if (isStartPingPong)
             return;
@@ -400,6 +414,7 @@ public class ClientActivity extends UHFBaseActivity implements
 
     // Stop reading tag
     public void stop() {
+
         if (!isStartPingPong)
             return;
 
@@ -450,7 +465,6 @@ public class ClientActivity extends UHFBaseActivity implements
         Helper_ThreadPool.ThreadPool_StartSingle(() -> {
             while (IsFlushList) {
                 synchronized (beep_Lock) {
-
                     try {
                         beep_Lock.wait();
                     } catch (InterruptedException ignored) {
@@ -459,7 +473,6 @@ public class ClientActivity extends UHFBaseActivity implements
 
                 if (IsFlushList)
                     toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP);
-
             }
         });
     }
@@ -553,7 +566,7 @@ public class ClientActivity extends UHFBaseActivity implements
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.d("PDADemo", "onKeyDown keyCode = " + keyCode);
+        //log.d("PDADemo", "onKeyDown keyCode = " + keyCode);
         if ((Adapt.DEVICE_TYPE_HY820 == Adapt.getDeviceType() && (keyCode == KeyEvent.KEYCODE_F9 /* RFID扳机*/ || keyCode == 285  /* 左快捷*/ || keyCode == 286  /* 右快捷*/))
                 || ((Adapt.getSN().startsWith("K3")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))
                 || ((Adapt.getSN().startsWith("K6")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))) { // 按下扳机
@@ -569,7 +582,6 @@ public class ClientActivity extends UHFBaseActivity implements
                     isStartPingPong = true;
                     String rt;
                     if (PublicData._IsCommand6Cor6B.equals("6C")) {// 6C
-
                         if (FTH.getCurrentFragmentName(this).equals(FN.SMART_SCAN_FN)) {
                             Fragment fragment = FTH.getFragmentByName(this, FN.SMART_SCAN_FN);
                             if (fragment != null) {
@@ -578,8 +590,10 @@ public class ClientActivity extends UHFBaseActivity implements
                             } else
                                 NoteMessage.showSnackBar(this, "يرجى استخدام زر الشاشة للقراءة");
 
-                        } else
-                            GetEPC_6C();
+                        } else {
+                            isStartPingPong = false;
+                            read();
+                        }
 
                     } else {// 6B
                         rt = CLReader.Get6B(_NowAntennaNo + "|1" + "|1" + "|"
@@ -602,17 +616,16 @@ public class ClientActivity extends UHFBaseActivity implements
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Log.d("PDADemo", "onKeyUp keyCode = " + keyCode);
+        //log.d("PDADemo", "onKeyUp keyCode = " + keyCode);
         if ((Adapt.DEVICE_TYPE_HY820 == Adapt.getDeviceType() && (keyCode == KeyEvent.KEYCODE_F9 /* RFID扳机*/ || keyCode == 285  /* 左快捷*/ || keyCode == 286  /* 右快捷*/))
                 || ((Adapt.getSN().startsWith("K3")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))
                 || ((Adapt.getSN().startsWith("K6")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))) { // 放开扳机
 
-            CLReader.Stop();
-            isStartPingPong = false;
+            stop();
+
             keyDownCount = 0;
             isKeyDown = false;
             isLongKeyDown = false;
-
 //            btn_Read.setText(getString(R.string.btn_read));
 //            sp_ReadType.setEnabled(true);
 //            btn_Read.setClickable(true);
@@ -644,13 +657,15 @@ public class ClientActivity extends UHFBaseActivity implements
             }
 
         } catch (Exception ex) {
-            Log.d("Debug", "Tags output exceptions:" + ex.getMessage());
+            //log.d("Debug", "Tags output exceptions:" + ex.getMessage());
         }
 
     }
 
     //6C,Read tag
     private int GetEPC_6C() {
+
+        Log.d(TAG, "GetEPC_6C: ");
         int ret;
 //        ret = UHFReader._Tag6C.GetEPC_TID(1, 1);
         ret = UHFReader._Tag6C.GetEPC(_NowAntennaNo, 1);

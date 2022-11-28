@@ -201,4 +201,7 @@
     <string name="wrong_user_or_Pass">اسم مستخدم غير صحيح</string>
     <string name="change_langue">تغيير اللغة</string>
 
+    <string name="unknown_product">منتج غير معروف!</string>
+    <string name="done_send_report">تم ارسال التقرير بنجاح</string>
+
 </resources>

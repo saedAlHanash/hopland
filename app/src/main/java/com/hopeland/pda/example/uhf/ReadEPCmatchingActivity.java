@@ -453,7 +453,7 @@ public class ReadEPCmatchingActivity extends UHFBaseActivity implements
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		Log.d("PDADemo", "onKeyDown keyCode = " + keyCode);
+		//log.d("PDADemo", "onKeyDown keyCode = " + keyCode);
 		if ((Adapt.DEVICE_TYPE_HY820 == Adapt.getDeviceType() && (keyCode == KeyEvent.KEYCODE_F9 /* RFID扳机*/ || keyCode == 285  /* 左快捷*/ || keyCode == 286  /* 右快捷*/))
 				|| ((Adapt.getSN().startsWith("K3")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))
 				|| ((Adapt.getSN().startsWith("K6")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))) { // 按下扳机
@@ -505,7 +505,7 @@ public class ReadEPCmatchingActivity extends UHFBaseActivity implements
 
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		Log.d("PDADemo", "onKeyUp keyCode = " + keyCode);
+		//log.d("PDADemo", "onKeyUp keyCode = " + keyCode);
 		if ((Adapt.DEVICE_TYPE_HY820 == Adapt.getDeviceType() && (keyCode == KeyEvent.KEYCODE_F9 /* RFID扳机*/ || keyCode == 285  /* 左快捷*/ || keyCode == 286  /* 右快捷*/))
 				|| ((Adapt.getSN().startsWith("K3")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))
 				|| ((Adapt.getSN().startsWith("K6")) && (keyCode == KeyEvent.KEYCODE_F1 || keyCode == KeyEvent.KEYCODE_F5))) { // 放开扳机
@@ -540,7 +540,7 @@ public class ReadEPCmatchingActivity extends UHFBaseActivity implements
 			}
 			totalReadCount++;
 		} catch (Exception ex) {
-			Log.d("Debug", "Tags output exceptions:" + ex.getMessage());
+			//log.d("Debug", "Tags output exceptions:" + ex.getMessage());
 		}
 
 	}
