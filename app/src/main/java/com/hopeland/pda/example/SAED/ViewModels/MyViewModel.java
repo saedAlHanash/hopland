@@ -44,6 +44,7 @@ public class MyViewModel extends ViewModel {
 
         if (socket == null)
             return;
+
         sendReportLiveData = new MutableLiveData<>();
 
         String json = gson.toJson(report, Report.class);

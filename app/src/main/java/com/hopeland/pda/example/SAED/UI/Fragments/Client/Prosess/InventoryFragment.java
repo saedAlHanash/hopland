@@ -1,11 +1,14 @@
 package com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +22,9 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
+import com.google.gson.Gson;
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.Helpers.Images.ConverterImage;
 import com.hopeland.pda.example.SAED.Helpers.NoteMessage;
 import com.hopeland.pda.example.SAED.Helpers.system.HardWar;
 import com.hopeland.pda.example.SAED.ViewModels.All;
@@ -27,9 +32,15 @@ import com.hopeland.pda.example.SAED.ViewModels.MyViewModel;
 import com.hopeland.pda.example.SAED.ViewModels.Report;
 import com.hopeland.pda.example.uhf.ClientActivity;
 
+import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -209,8 +220,13 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     void initListEpc(int id) {
         if (listLocations == null)
             return;
+
         listEpc = listLocations.get(id).epcs;
+
         listStringEpc.clear();
+        listStringEpc1.clear();
+        scannedList.clear();
+        undefinedList.clear();
 
         if (listEpc == null)
             return;
@@ -245,13 +261,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
                     notFound.setText(String.valueOf(listStringEpc.size()));
                     break;
                 }
-                case 2: {
-                    Log.d(TAG, "handleMessage: message 2");
-                    NoteMessage.showSnackBar(myActivity, "تم قراءة جميع العناصر المتوقعة وإيقاف المسح");
-                    break;
-                }
             }
-
         }
 
     };
@@ -285,17 +295,21 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             }
 
             case R.id.report: {
-
                 sendReport();
-
                 break;
             }
         }
     }
 
     private void sendReport() {
+
+        if (list == null)
+            return;
+
         startLoading();
-        myViewModel.sendReport(myActivity.socket, createReport());
+        Report report = createReport();
+
+        myViewModel.sendReport(myActivity.socket, report);
         myViewModel.sendReportLiveData.observe(myActivity, doneSend -> {
 
             if (doneSend == null || !isAdded())
@@ -317,12 +331,14 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
         report.setWid(list.get(warehousesSpinner.getSelectedItemPosition()).id);
         report.setDt(new Date());
         report.setLid(listLocations.get(inventorySpinner.getSelectedItemPosition()).id);
-        report.setUsr(HardWar.getIMEINumber(myActivity));
+        report.setUsr(HardWar.GetIMEI(myActivity));
+//        report.setUsr(HardWar.getIMEINumber(myActivity));
 
         report.setEpcs1(listStringEpc1);
         report.setEpcs2(scannedList);
         report.setEpcs3(undefinedList);
         report.setEpcs4(listStringEpc);
+
 
         return report;
     }
@@ -359,13 +375,6 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onRead(@NotNull String epc, byte rssi) {
 
-        if (listStringEpc.isEmpty()) {
-            handler.sendEmptyMessage(2);
-            myActivity.stop();
-            return;
-        }
-
-
         if (listStringEpc.contains(epc)) {
             scannedList.add(epc);
             listStringEpc.remove(epc);
@@ -376,4 +385,29 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             handler.sendEmptyMessage(1);
         }
     }
+
+
+//    public Pair<File, String> createImageFile(Context context, byte[] bytes) throws Exception {
+//
+//        String path;
+//
+////        // Create an image file name
+////        String timeStamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.ENGLISH).format(new Date());
+////        String imageFileName = "JPEG_" + timeStamp + "_";
+//
+//        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+//
+//        File image = File.createTempFile(
+//                String.valueOf(Calendar.getInstance().getTimeInMillis()),  /* prefix */
+//                ".txt",         /* suffix */
+//                storageDir      /* directory */
+//        );
+//
+//        // Save a file: path for use with ACTION_VIEW intents
+//        path = image.getAbsolutePath();
+//        FileUtils.writeByteArrayToFile(new File(path), bytes);
+//        return new Pair<>(image, path);
+//    }
+
+
 }

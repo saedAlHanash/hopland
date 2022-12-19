@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 public class HardWar {
 
@@ -27,5 +28,10 @@ public class HardWar {
         return imei;
     }
 
+    public static String GetIMEI(Context context) {
+        String  id = android.provider.Settings.Secure.getString(
+                context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+        return id;
+    }
 
 }

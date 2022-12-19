@@ -217,6 +217,15 @@ public class ClientActivity extends UHFBaseActivity implements
                 if (message.trim().equals("200"))
                     handler.sendEmptyMessage(1000);
 
+                if (message.charAt(0) == '[') {
+
+                    ArrayList<All> alls = gson.fromJson(message,
+                            new TypeToken<ArrayList<All>>() {
+                            }.getType());
+
+                    myViewModel.allLiveData.postValue(alls);
+
+                }
             }
 
             @Override
@@ -323,14 +332,12 @@ public class ClientActivity extends UHFBaseActivity implements
                     break;
 
                 case 202:
-
-                    handler.postDelayed(() -> {
+                    handler.postDelayed(() -> new Thread(() -> {
                         if (!socket.isClosed) {
-                            webSocketClient.setConnectionLostTimeout(25);
                             webSocketClient.reconnect();
                             Log.d(TAG, "handleMessage: reconnect");
                         }
-                    }, 30000);
+                    }).start(), 30000);
 
                     myViewModel.connectLiveData.postValue(false);
                     break;
@@ -464,6 +471,7 @@ public class ClientActivity extends UHFBaseActivity implements
         // The buzzer sounds
         Helper_ThreadPool.ThreadPool_StartSingle(() -> {
             while (IsFlushList) {
+
                 synchronized (beep_Lock) {
                     try {
                         beep_Lock.wait();

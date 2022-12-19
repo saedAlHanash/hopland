@@ -36,7 +36,7 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-    private void initViews() {
+    void initViews() {
         login = view.findViewById(R.id.login1);
         textView2 = view.findViewById(R.id.textView2);
         username = view.findViewById(R.id.user_name);
@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
         login.setOnClickListener(loginListener);
     }
 
-    private final View.OnClickListener loginListener = view -> {
+    final View.OnClickListener loginListener = view -> {
         if (checkFields()) {
             String u = username.getText().toString();
             String p = password.getText().toString();
