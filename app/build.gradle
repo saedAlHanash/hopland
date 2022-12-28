@@ -14,8 +14,8 @@ android {
 		applicationId "com.hopeland.pdaexample"
 		minSdkVersion 22
 		targetSdkVersion 31
-		versionCode 33
-		versionName "1.0.7"
+		versionCode 35
+		versionName "2.0.0"
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8
@@ -58,7 +58,8 @@ dependencies {
 	implementation 'com.intuit.ssp:ssp-android:1.0.6'
 	implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 //	implementation "com.squareup.retrofit2:retrofit:2.9.0"
-
+	//FileUtils
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 	implementation 'info.hoang8f:android-segmented:1.0.6'
 	implementation 'org.java-websocket:Java-WebSocket:1.5.3'
 

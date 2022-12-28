@@ -44,7 +44,6 @@ public class Test extends Thread {
     public void sendString(String s) {
 
         this.s = s;
-
         synchronized (lockSend) {
             lockSend.notify();
         }

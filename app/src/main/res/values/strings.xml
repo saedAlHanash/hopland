@@ -201,5 +201,6 @@
 
     <string name="unknown_product">Unknown product!</string>
     <string name="done_send_report">Done send report</string>
+    <string name="copied">Copied to clipboard</string>
 
 </resources>

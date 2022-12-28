@@ -2,6 +2,9 @@ package com.hopeland.pda.example.SAED.UI.Fragments;
 
 import androidx.fragment.app.Fragment;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.Helpers.system.Copy;
 import com.hopeland.pda.example.SAED.ViewModels.Product;
 
 
@@ -19,6 +24,7 @@ public class ProductInfoFragment extends Fragment {
 
     ImageView product_image;
     TextView name;
+    TextView epc;
     TextView stons;
     TextView material_type;
     TextView purity;
@@ -45,6 +51,7 @@ public class ProductInfoFragment extends Fragment {
     void initItem() {
         product_image = view.findViewById(R.id.product_image);
         name = view.findViewById(R.id.name);
+        epc = view.findViewById(R.id.epc);
         stons = view.findViewById(R.id.stons);
         material_type = view.findViewById(R.id.material_type);
         purity = view.findViewById(R.id.purity);
@@ -54,6 +61,7 @@ public class ProductInfoFragment extends Fragment {
         price = view.findViewById(R.id.price);
 
         name.setText(product.pn);
+        epc.setText(product.epc);
         stons.setText(product.sto);
         material_type.setText(product.mt_type);
         purity.setText(product.pur);
@@ -61,6 +69,10 @@ public class ProductInfoFragment extends Fragment {
         material_weight.setText(product.mtw);
         purity_weight.setText(product.ntw);
         price.setText(product.pp);
+        
+        epc.setOnClickListener(v -> {
+            Copy.copyText(requireContext(), epc.getText().toString());
+        });
 
         product_image.setImageBitmap(product.bitmap);
     }

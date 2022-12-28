@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hopeland.pda.example.R;
+import com.hopeland.pda.example.SAED.Helpers.system.Copy;
 import com.hopeland.pda.example.SAED.ViewModels.Product;
 
 import java.util.ArrayList;
@@ -49,7 +50,8 @@ public class AdapterItemEpc extends RecyclerView.Adapter<AdapterItemEpc.Holder> 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false));
+        return new Holder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_product, parent, false));
 
     }
 
@@ -61,7 +63,11 @@ public class AdapterItemEpc extends RecyclerView.Adapter<AdapterItemEpc.Holder> 
         holder.epc.setText(item.epc);
         holder.name.setText(item.pn);
         holder.price.setText(item.wn);
-        holder.imageView9.setImageBitmap(item.getImageThump());
+
+        if (item.bitmap != null)
+            holder.imageView9.setImageBitmap(item.getImageThump());
+        else
+            holder.imageView9.setImageResource(R.drawable.gray_logo);
     }
 
     @Override
@@ -87,6 +93,10 @@ public class AdapterItemEpc extends RecyclerView.Adapter<AdapterItemEpc.Holder> 
                 if (listener == null)
                     return;
                 listener.onItemClicked(getAdapterPosition(), list);
+            });
+            itemView.setOnLongClickListener(v -> {
+                Copy.copyText(activity, getItem(getAdapterPosition()).epc);
+                return true;
             });
         }
     }

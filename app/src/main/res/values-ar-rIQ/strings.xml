@@ -203,5 +203,6 @@
 
     <string name="unknown_product">منتج غير معروف!</string>
     <string name="done_send_report">تم ارسال التقرير بنجاح</string>
+    <string name="copied">تم النسخ إلى الحافظة</string>
 
 </resources>

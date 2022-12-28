@@ -43,6 +43,8 @@ public class SettingsFragment extends Fragment {
 
         listeners();
 
+        GetPower();
+
         return view;
     }
 
@@ -71,6 +73,24 @@ public class SettingsFragment extends Fragment {
         else
             Toast.makeText(requireActivity(), getString(R.string.str_faild), Toast.LENGTH_SHORT).show();
 
+    }
+
+    // Query current power
+    protected boolean GetPower() {
+        boolean rt = false;
+        int iPower = UHFReader._Config.GetANTPowerParam();
+        if (iPower != -1)
+            rt = true;
+
+        try {
+            spinner.setSelection(iPower);
+        } catch (Exception ex) //set the power to 25
+        {
+            int antCount = 1;
+            UHFReader._Config.SetANTPowerParam(antCount, 25);
+            spinner.setSelection(25);
+        }
+        return rt;
     }
 
     // SerPower
