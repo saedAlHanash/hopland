@@ -72,11 +72,11 @@ public class LoginFragment extends Fragment {
 
     boolean checkFields() {
         if (username.getText().length() == 0) {
-            username.setError("حقل فارغ");
+            username.setError(getString(R.string.empty_feild));
             return false;
         }
         if (password.getText().length() == 0) {
-            password.setError("حقل فارغ");
+            password.setError(getString(R.string.empty_feild));
             return false;
         }
         return true;

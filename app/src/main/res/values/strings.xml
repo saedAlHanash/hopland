@@ -202,5 +202,13 @@
     <string name="unknown_product">Unknown product!</string>
     <string name="done_send_report">Done send report</string>
     <string name="copied">Copied to clipboard</string>
+    <string name="have_error">have error</string>
+    <string name="start_reading">start reading</string>
+    <string name="stop_reading">stop reading</string>
+    <string name="empty_feild">empty feild</string>
+    <string name="format_error">"format error "</string>
+    <string name="error_tag">enter full TAG</string>
+    <string name="requierd">requierd</string>
+    <string name="screen_button">use read button from screen</string>
 
 </resources>

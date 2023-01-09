@@ -79,12 +79,12 @@
                 android:id="@+id/scan_type_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
                 android:fontFamily="@font/cairo_bold"
                 android:gravity="center"
                 android:text="@string/single"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp" />
+                android:textSize="@dimen/_11ssp"
+                app:drawableEndCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
         </LinearLayout>
 

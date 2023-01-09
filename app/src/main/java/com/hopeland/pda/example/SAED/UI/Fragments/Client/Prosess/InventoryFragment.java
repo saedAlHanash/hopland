@@ -320,7 +320,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             if (doneSend)
                 NoteMessage.showSnackBar(myActivity, getString(R.string.done_send_report));
             else
-                NoteMessage.showSnackBar(myActivity, "format error ");
+                NoteMessage.showSnackBar(myActivity, getString(R.string.format_error));
 
         });
     }

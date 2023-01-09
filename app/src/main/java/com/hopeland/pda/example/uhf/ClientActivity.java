@@ -315,12 +315,12 @@ public class ClientActivity extends UHFBaseActivity implements
             switch (msg.what) {
                 case 404:
                     Toast.makeText(ClientActivity.this,
-                            "not found", Toast.LENGTH_SHORT).show();
+                            getString(R.string.not_found), Toast.LENGTH_SHORT).show();
                     break;
 
                 case 500:
                     Toast.makeText(ClientActivity.this,
-                            "have error", Toast.LENGTH_SHORT).show();
+                            getString(R.string.have_error), Toast.LENGTH_SHORT).show();
                     break;
 
                 case 200:
@@ -392,6 +392,8 @@ public class ClientActivity extends UHFBaseActivity implements
 
         isStartPingPong = true;
 
+        Toast.makeText(this, getString(R.string.start_reading), Toast.LENGTH_SHORT).show();
+
         Helper_ThreadPool.ThreadPool_StartSingle(() -> {
             try {
                 GetEPC_6C();
@@ -425,6 +427,7 @@ public class ClientActivity extends UHFBaseActivity implements
         if (!isStartPingPong)
             return;
 
+        Toast.makeText(this, getString(R.string.stop_reading), Toast.LENGTH_SHORT).show();
         isStartPingPong = false;
         CLReader.Stop();
     }
@@ -596,7 +599,7 @@ public class ClientActivity extends UHFBaseActivity implements
                                 String epc = ((SmartScanFragment) fragment).epc.getText().toString();
                                 GetEPC_6CSmart(epc);
                             } else
-                                NoteMessage.showSnackBar(this, "يرجى استخدام زر الشاشة للقراءة");
+                                NoteMessage.showSnackBar(this, getString(R.string.screen_button));
 
                         } else {
                             isStartPingPong = false;

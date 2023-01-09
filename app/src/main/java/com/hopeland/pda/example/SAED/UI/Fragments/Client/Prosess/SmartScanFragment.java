@@ -82,7 +82,7 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
 
             case R.id.read: {
                 if (epc.getText().length() < 20) {
-                    NoteMessage.showSnackBar(myActivity, "يجب ادخال ال Tag كاملا");
+                    NoteMessage.showSnackBar(myActivity, getString(R.string.error_tag));
                     return;
                 }
 
@@ -129,47 +129,46 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
         //log.d("SAED_S", "onRead: sss ");
         this.rssi = rssi;
 
-        if (rssi < 60) {
+        if (rssi < 55) {
             handler.sendEmptyMessage(0);
             return;
         }
 
-        if (rssi > 60 && rssi < 65)
+        if (rssi > 55 && rssi < 60)
             handler.sendEmptyMessage(1);
 
-        else if (rssi >= 65 && rssi < 70)
+        else if (rssi >= 60 && rssi < 65)
             handler.sendEmptyMessage(2);
 
-        else if (rssi >= 70 && rssi < 75)
+        else if (rssi >= 65 && rssi < 70)
             handler.sendEmptyMessage(3);
 
-        else if (rssi >= 75 && rssi < 80)
+        else if (rssi >= 70 && rssi < 75)
             handler.sendEmptyMessage(4);
 
-        else if (rssi >= 80 && rssi < 85)
+        else if (rssi >= 75 && rssi < 80)
             handler.sendEmptyMessage(5);
 
-        else if (rssi >= 85 && rssi < 90)
+        else if (rssi >= 80 && rssi < 85)
             handler.sendEmptyMessage(6);
 
-        else if (rssi >= 90 && rssi < 95)
+        else if (rssi >= 85 && rssi < 90)
             handler.sendEmptyMessage(7);
 
-        else if (rssi >= 95 && rssi < 100)
+        else if (rssi >= 90 && rssi < 95)
             handler.sendEmptyMessage(8);
 
-        else if (rssi >= 100 && rssi < 105)
+        else if (rssi >= 95 && rssi < 100)
             handler.sendEmptyMessage(9);
 
-        else if (rssi >= 105 && rssi < 110)
+        else if (rssi >= 100 && rssi < 105)
             handler.sendEmptyMessage(10);
 
-        else if (rssi >= 110 && rssi < 115)
+        else if (rssi >= 105 && rssi < 110)
             handler.sendEmptyMessage(11);
 
-        else if (rssi >= 115)
+        else if (rssi >= 110)
             handler.sendEmptyMessage(12);
-
 
     }
 }
