@@ -212,5 +212,6 @@
     <string name="error_tag">"يجب ادخال الرمز كاملا "</string>
     <string name="requierd">مطلوب</string>
     <string name="screen_button">يرجى استخدام زر الشاشة للقراءة</string>
+    <string name="colsing_from_servier">أغلق الاتصال من طرف المخدم</string>
 
 </resources>

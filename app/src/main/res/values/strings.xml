@@ -210,5 +210,6 @@
     <string name="error_tag">enter full TAG</string>
     <string name="requierd">requierd</string>
     <string name="screen_button">use read button from screen</string>
+    <string name="colsing_from_servier">connection closing from server</string>
 
 </resources>

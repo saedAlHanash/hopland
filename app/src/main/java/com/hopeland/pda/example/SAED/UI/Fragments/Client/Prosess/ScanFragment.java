@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -101,7 +103,7 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
         } else
             adapter.insertItem(pair.first);
 
-        send();
+        new Handler(Looper.getMainLooper()).postDelayed(this::send, 400);
     };
 
     void initView() {
@@ -206,8 +208,10 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onRead(@NotNull String epc, byte rssi) {
+
         if (scannedEpc.contains(epc))
             return;
+
         scannedEpc.add(epc);
 
         queue.offer(epc);
@@ -230,7 +234,6 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
         }
 
         currentEpc = queue.poll();
-
         myViewModel.getProduct(myActivity.socket, currentEpc);
     }
 
