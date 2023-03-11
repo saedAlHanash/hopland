@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- style name="defaultActivityStyle" parent="android:Theme.Holo.Light">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/background</item>
+        <item name="android:baselineAligned">false</item>
+    </style-->
+
+     <style name="AppTheme"  parent="Theme.AppCompat.Light.NoActionBar">
+         <!-- Customize your theme here. -->
+         <item name="colorPrimary">@color/main_color</item>
+         <item name="colorPrimaryDark">@color/main_color_dark</item>
+         <item name="colorAccent">@color/main_color_light</item>
+    </style>
+
+    <!-- Activity Title Style -->
+
+    <style name="UHFTheme"  parent="AppTheme">
+         <item name="android:textSize">14sp</item>
+     </style>
+
+
+    <array name="language">
+        <item>العربية</item>
+        <item>English</item>
+    </array>
+
+    <array name="scan_type">
+        <item>@string/single</item>
+        <item>@string/loop</item>
+    </array>
+
+</resources>
