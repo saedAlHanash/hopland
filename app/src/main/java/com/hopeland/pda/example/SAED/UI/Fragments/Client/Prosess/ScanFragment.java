@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -96,8 +97,8 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
             Product product = new Product();
             product.epc = currentEpc;
             product.wn = getString(R.string.unknown_product);
-
             adapter.insertItem(product);
+            Log.d(TAG, getString(R.string.unknown_product));
         } else
             adapter.insertItem(pair.first);
 
