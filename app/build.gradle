@@ -7,15 +7,15 @@ android {
 		}
 	}
 
-	compileSdkVersion 31
+	compileSdkVersion 33
 	buildToolsVersion '28.0.3'
 
 	defaultConfig {
 		applicationId "com.hopeland.pdaexample"
-		minSdkVersion 22
-		targetSdkVersion 31
-		versionCode 35
-		versionName "2.0.0"
+		minSdkVersion 23
+		targetSdkVersion 33
+		versionCode 40
+		versionName "2.0.5"
 	}
 	compileOptions {
 		sourceCompatibility JavaVersion.VERSION_1_8

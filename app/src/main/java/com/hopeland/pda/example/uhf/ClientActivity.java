@@ -59,14 +59,14 @@ public class ClientActivity extends UHFBaseActivity implements
 
     //region  OLD
 
-    private static boolean isStartPingPong = false; //Whether to start reading tag
-    private boolean isKeyDown = false; // Whether the board is pressed
-    private boolean isLongKeyDown = false; // Whether the board is in long press state
-    private int keyDownCount = 0; // Number of times the board is pressed
+    static boolean isStartPingPong = false; //Whether to start reading tag
+    boolean isKeyDown = false; // Whether the board is pressed
+    boolean isLongKeyDown = false; // Whether the board is in long press state
+    int keyDownCount = 0; // Number of times the board is pressed
 
-    private final Object hmList_Lock = new Object();
-    private Boolean IsFlushList = true; //Whether to refresh the list
-    private final Object beep_Lock = new Object();
+    final Object hmList_Lock = new Object();
+    Boolean IsFlushList = true; //Whether to refresh the list
+    final Object beep_Lock = new Object();
     ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_SYSTEM,
             ToneGenerator.MAX_VOLUME);
 
@@ -106,7 +106,7 @@ public class ClientActivity extends UHFBaseActivity implements
 
     //endregion
 
-    private final String TAG = "SAED_";
+    final String TAG = "SAED_";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,7 +237,7 @@ public class ClientActivity extends UHFBaseActivity implements
             @Override
             public void onError(Exception ex) {
                 Log.e(TAG, "onError: ", ex);
-                handler.sendEmptyMessage(500);
+//                handler.sendEmptyMessage(500);
             }
 
             @Override
@@ -296,7 +296,7 @@ public class ClientActivity extends UHFBaseActivity implements
         socket = new SaedSocket(webSocketClient);
     }
 
-    private void initUri(String mIp, int mPort) {
+    void initUri(String mIp, int mPort) {
         try {
             uri = new URI("ws://" + mIp + ":" + mPort);
         } catch (URISyntaxException e) {
@@ -309,18 +309,18 @@ public class ClientActivity extends UHFBaseActivity implements
 
     //region handler
 
-    private final Handler handler = new Handler(Looper.getMainLooper()) {
+    final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case 404:
                     Toast.makeText(ClientActivity.this,
-                            "not found", Toast.LENGTH_SHORT).show();
+                            getString(R.string.not_found), Toast.LENGTH_SHORT).show();
                     break;
 
                 case 500:
                     Toast.makeText(ClientActivity.this,
-                            "have error", Toast.LENGTH_SHORT).show();
+                            getString(R.string.have_error), Toast.LENGTH_SHORT).show();
                     break;
 
                 case 200:
@@ -337,7 +337,7 @@ public class ClientActivity extends UHFBaseActivity implements
                             webSocketClient.reconnect();
                             Log.d(TAG, "handleMessage: reconnect");
                         }
-                    }).start(), 30000);
+                    }).start(), 5000);
 
                     myViewModel.connectLiveData.postValue(false);
                     break;
@@ -392,6 +392,8 @@ public class ClientActivity extends UHFBaseActivity implements
 
         isStartPingPong = true;
 
+        Toast.makeText(this, getString(R.string.start_reading), Toast.LENGTH_SHORT).show();
+
         Helper_ThreadPool.ThreadPool_StartSingle(() -> {
             try {
                 GetEPC_6C();
@@ -425,6 +427,7 @@ public class ClientActivity extends UHFBaseActivity implements
         if (!isStartPingPong)
             return;
 
+        Toast.makeText(this, getString(R.string.stop_reading), Toast.LENGTH_SHORT).show();
         isStartPingPong = false;
         CLReader.Stop();
     }
@@ -500,7 +503,7 @@ public class ClientActivity extends UHFBaseActivity implements
 
     //region handler process
 
-    private final Handler handler1 = new Handler(Looper.getMainLooper()) {
+    final Handler handler1 = new Handler(Looper.getMainLooper()) {
         @SuppressLint("HandlerLeak")
         @Override
         public void handleMessage(Message msg) {
@@ -596,7 +599,7 @@ public class ClientActivity extends UHFBaseActivity implements
                                 String epc = ((SmartScanFragment) fragment).epc.getText().toString();
                                 GetEPC_6CSmart(epc);
                             } else
-                                NoteMessage.showSnackBar(this, "يرجى استخدام زر الشاشة للقراءة");
+                                NoteMessage.showSnackBar(this, getString(R.string.screen_button));
 
                         } else {
                             isStartPingPong = false;
@@ -671,7 +674,7 @@ public class ClientActivity extends UHFBaseActivity implements
     }
 
     //6C,Read tag
-    private int GetEPC_6C() {
+    int GetEPC_6C() {
 
         Log.d(TAG, "GetEPC_6C: ");
         int ret;
@@ -682,7 +685,7 @@ public class ClientActivity extends UHFBaseActivity implements
         return ret;
     }
 
-    private int GetEPC_6CSmart(String epc) {
+    int GetEPC_6CSmart(String epc) {
 
         int ret;
 

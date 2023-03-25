@@ -151,11 +151,11 @@ public class SettingsFragment extends Fragment {
         int mPort = Integer.parseInt(port.getText().toString());
 
         if (mIp.isEmpty()) {
-            ip.setError("required");
+            ip.setError(getString(R.string.requierd));
             return;
         }
         if (mPort == 0) {
-            port.setError("required");
+            port.setError(getString(R.string.requierd));
             return;
         }
 

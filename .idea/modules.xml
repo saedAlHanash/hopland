@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Example.PDAExample.iml" filepath="$PROJECT_DIR$/.idea/modules/Example.PDAExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/PDAExample.iml" filepath="$PROJECT_DIR$/.idea/modules/PDAExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PDAExample.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PDAExample.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PDAExample.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PDAExample.app.androidTest.iml" />

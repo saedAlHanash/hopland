@@ -1,14 +1,11 @@
 package com.hopeland.pda.example.SAED.UI.Fragments.Client.Prosess;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +19,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
-import com.google.gson.Gson;
 import com.hopeland.pda.example.R;
-import com.hopeland.pda.example.SAED.Helpers.Images.ConverterImage;
 import com.hopeland.pda.example.SAED.Helpers.NoteMessage;
 import com.hopeland.pda.example.SAED.Helpers.system.HardWar;
 import com.hopeland.pda.example.SAED.ViewModels.All;
@@ -32,15 +27,9 @@ import com.hopeland.pda.example.SAED.ViewModels.MyViewModel;
 import com.hopeland.pda.example.SAED.ViewModels.Report;
 import com.hopeland.pda.example.uhf.ClientActivity;
 
-import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -75,7 +64,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
     //endregion
 
     //region lists models
-    ArrayList<All> list;
+    ArrayList<All> list = new ArrayList<>();
     ArrayList<All.Location> listLocations;
     ArrayList<All.Epc> listEpc;
 
@@ -303,8 +292,10 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
 
     private void sendReport() {
 
-        if (list == null)
+        if (list == null) {
+            NoteMessage.showSnackBar(myActivity, getString(R.string.no_data_error));
             return;
+        }
 
         startLoading();
         Report report = createReport();
@@ -320,7 +311,7 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
             if (doneSend)
                 NoteMessage.showSnackBar(myActivity, getString(R.string.done_send_report));
             else
-                NoteMessage.showSnackBar(myActivity, "format error ");
+                NoteMessage.showSnackBar(myActivity, getString(R.string.format_error));
 
         });
     }

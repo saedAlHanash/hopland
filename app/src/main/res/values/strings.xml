@@ -29,7 +29,7 @@
     <string name="btn_UHFMenu_Configration">Configration</string>
 
     <!-- UHF Read -->
-    <string name="app_name">PDA Example</string>
+    <string name="app_name">Jewellery Tech</string>
     <string name="List_TagID">EPC</string>
     <string name="List_ReadCount">Count</string>
     <string name="Tag_Time">Time:0 S </string>
@@ -202,5 +202,15 @@
     <string name="unknown_product">Unknown product!</string>
     <string name="done_send_report">Done send report</string>
     <string name="copied">Copied to clipboard</string>
+    <string name="have_error">have error</string>
+    <string name="start_reading">start reading</string>
+    <string name="stop_reading">stop reading</string>
+    <string name="empty_feild">empty feild</string>
+    <string name="format_error">"format error "</string>
+    <string name="error_tag">enter full TAG</string>
+    <string name="requierd">requierd</string>
+    <string name="screen_button">use read button from screen</string>
+    <string name="colsing_from_servier">connection closing from server</string>
+    <string name="no_data_error">No Data</string>
 
 </resources>
