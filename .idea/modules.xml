@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Example.PDAExample.iml" filepath="$PROJECT_DIR$/.idea/modules/Example.PDAExample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/PDAExample.iml" filepath="$PROJECT_DIR$/.idea/modules/PDAExample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PDAExample.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PDAExample.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PDAExample.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PDAExample.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PDAExample.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PDAExample.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PDAExample.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PDAExample.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hopland.iml" filepath="$PROJECT_DIR$/.idea/modules/hopland.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/hopland.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/hopland.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/hopland.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/hopland.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/hopland.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/hopland.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/hopland.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/hopland.app.unitTest.iml" />
     </modules>
   </component>
 </project>

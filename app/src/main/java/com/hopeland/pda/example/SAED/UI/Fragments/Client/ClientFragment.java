@@ -82,33 +82,24 @@ public class ClientFragment extends Fragment implements View.OnClickListener {
                 new SmartScanFragment(), FN.SMART_SCAN_FN);
     }
 
-        private static final String TAG = "ClientFragment";
+    private static final String TAG = "ClientFragment";
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        if (v.getId() == R.id.smart_scan) {
             // المسح الذكي
-            case R.id.smart_scan: {
-                startSmartScanFragment();
-                break;
-            }
+            startSmartScanFragment();
+        } else if (v.getId() == R.id.inventory) {
             // جرد المخزن
-            case R.id.inventory: {
-
-                startInventory();
-                break;
-            }
+            startInventory();
+        } else if (v.getId() == R.id.scan) {
             // مسح منتج
-            case R.id.scan: {
-                startScanFragment();
-                break;
-            }
-            //اعدادات
-            case R.id.settings: {
-
-                startSetting();
-                break;
-            }
+            startScanFragment();
+        } else if (v.getId() == R.id.settings) {
+            // إعدادات
+            startSetting();
         }
+
     }
 
 

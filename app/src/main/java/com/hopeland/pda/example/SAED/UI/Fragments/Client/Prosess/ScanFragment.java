@@ -144,37 +144,23 @@ public class ScanFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        if (v.getId() == R.id.read) {
+            myActivity.read();
+        } else if (v.getId() == R.id.stop) {
+            myActivity.stop();
+        } else if (v.getId() == R.id.clean) {
+            myActivity.stop();
 
-            case R.id.read: {
-                myActivity.read();
-                break;
-            }
+            if (myViewModel.productLiveData != null)
+                myViewModel.productLiveData.setValue(null);
 
-            case R.id.stop: {
-                myActivity.stop();
-                break;
-            }
+            scannedEpc.clear();
 
-            case R.id.clean: {
-
-                myActivity.stop();
-
-                if (myViewModel.productLiveData != null)
-                    myViewModel.productLiveData.setValue(null);
-
-                scannedEpc.clear();
-
-                adapter.setAndRefresh(new ArrayList<>());
-
-                break;
-            }
-
-            case R.id.scan_type_tv: {
-                spinnerTypeScan.performClick();
-                break;
-            }
+            adapter.setAndRefresh(new ArrayList<>());
+        } else if (v.getId() == R.id.scan_type_tv) {
+            spinnerTypeScan.performClick();
         }
+
     }
 
     @Override

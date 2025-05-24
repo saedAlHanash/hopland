@@ -270,24 +270,14 @@ public class InventoryFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.read: {
-                myActivity.read();
-                break;
-            }
-
-            case R.id.stop: {
-
-                myActivity.stop();
-                break;
-            }
-
-            case R.id.report: {
-                sendReport();
-                break;
-            }
+        if (v.getId() == R.id.read) {
+            myActivity.read();
+        } else if (v.getId() == R.id.stop) {
+            myActivity.stop();
+        } else if (v.getId() == R.id.report) {
+            sendReport();
         }
+
     }
 
     private void sendReport() {

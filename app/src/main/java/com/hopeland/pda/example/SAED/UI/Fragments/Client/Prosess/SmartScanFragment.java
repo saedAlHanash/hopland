@@ -78,24 +78,16 @@ public class SmartScanFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.read: {
-                if (epc.getText().length() < 20) {
-                    NoteMessage.showSnackBar(myActivity, getString(R.string.error_tag));
-                    return;
-                }
-
-                myActivity.readSmart(epc.getText().toString());
-                break;
+        if (v.getId() == R.id.read) {
+            if (epc.getText().length() < 20) {
+                NoteMessage.showSnackBar(myActivity, getString(R.string.error_tag));
+                return;
             }
-
-            case R.id.stop: {
-
-                myActivity.stop();
-                break;
-            }
+            myActivity.readSmart(epc.getText().toString());
+        } else if (v.getId() == R.id.stop) {
+            myActivity.stop();
         }
+
     }
 
     @Override
