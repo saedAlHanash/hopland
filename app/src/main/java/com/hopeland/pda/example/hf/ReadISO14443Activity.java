@@ -58,7 +58,7 @@ public class ReadISO14443Activity extends BaseActivity implements
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		} catch (Exception ex) {
-			//log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+			Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 		}
 
 		showCustomBar(getString(R.string.btn_HFMenu_ISO14443A),
@@ -250,7 +250,7 @@ public class ReadISO14443Activity extends BaseActivity implements
 		try {
 			sendMessage(MSG_UPDATE_UID, model._EPC);
 		} catch (Exception ex) {
-			//log.d("Debug", "Read the tag serial number exception:" + ex.getMessage());
+			Log.d("Debug", "Read the tag serial number exception:" + ex.getMessage());
 		}
 	}
 

@@ -14,8 +14,7 @@
         android:orientation="vertical">
 
 
-         <ImageView
-                tools:ignore="ContentDescription"
+        <ImageView
 			android:layout_margin="10dp"
             android:id="@+id/grid_item_image"
             android:layout_width="match_parent"

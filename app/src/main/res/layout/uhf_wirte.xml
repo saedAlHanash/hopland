@@ -77,7 +77,8 @@
 				android:orientation="horizontal">
 
 				<Button
-                    android:layout_width="match_parent"
+					android:id="@+id/btn_Write_ReadMacthTag"
+					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:background="@drawable/button_blue"
@@ -150,7 +151,8 @@
 				android:orientation="vertical">
 
 				<Button
-                    android:layout_width="fill_parent"
+					android:id="@+id/btn_Write_WriteData"
+					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:background="@drawable/button_orange"

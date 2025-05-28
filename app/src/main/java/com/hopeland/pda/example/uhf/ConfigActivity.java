@@ -59,7 +59,7 @@ public class ConfigActivity extends UHFBaseActivity implements
 		// do not using power switch in configure
 		if (!UHF_Init(this)) { // 打开模块电源失败
 			showMsg(getString(R.string.uhf_low_power_info),
-					new DialogInterface.OnClickListener() {
+					new OnClickListener() {
 						@Override
 						public void onClick(DialogInterface arg0, int arg1) {
 							ConfigActivity.this.finish();
@@ -162,7 +162,7 @@ public class ConfigActivity extends UHFBaseActivity implements
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		} catch (Exception ex) {
-			//log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+			Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 		}
 
 		showCustomBar(getString(R.string.btn_UHFMenu_Configration),

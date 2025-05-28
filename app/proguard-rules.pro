@@ -23,9 +23,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
--keep class com.hopeland.pda.example.** { <fields>; }
--keep class com.util.BaseActivity.**
--keepclassmembers class **.R$* {
-       public static <fields>;
-}

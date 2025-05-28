@@ -173,7 +173,7 @@ public class ScannerActivity extends BaseActivity {
 
 	//The key events
 	@Override
-	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 		if (keyCode == KeyEvent.KEYCODE_F1 /* K3A Handle key */
 				|| keyCode == KeyEvent.KEYCODE_F5/* K3A Handle key*/

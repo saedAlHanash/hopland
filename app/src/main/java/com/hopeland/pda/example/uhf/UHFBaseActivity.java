@@ -26,12 +26,7 @@ public class UHFBaseActivity extends BaseActivity {
 	// static int _PingPong_StopTime = 300;
 	static int _NowAntennaNo = 1; // 读写器天线编号
 	static int _UpDataTime = 0; // 重复标签上传时间，控制标签上传速度不要太快
-	static int _Max_Power; // 读写器最大发射功率
-
-	static {
-		_Max_Power = 30;
-	}
-
+	static int _Max_Power = 30; // 读写器最大发射功率
 	static int _Min_Power = 0; // 读写器最小发射功率
 
 	static int low_power_soc = 10;
@@ -54,12 +49,11 @@ public class UHFBaseActivity extends BaseActivity {
 				}
 
 				Thread.sleep(500);
-
 			} else {
 				rt = true;
 			}
 		} catch (Exception ex) {
-			//log.d("debug", "On the UHF electric abnormal:" + ex.getMessage());
+			Log.d("debug", "On the UHF electric abnormal:" + ex.getMessage());
 		}
 		return rt;
 	}
@@ -82,7 +76,7 @@ public class UHFBaseActivity extends BaseActivity {
 	protected void UHF_GetReaderProperty() {
 		//String propertyStr = CLReader.GetReaderProperty();
         String propertyStr = UHFReader._Config.GetReaderProperty();
-		////log.d("Debug", "Get Reader Property:" + propertyStr);
+		//Log.d("Debug", "Get Reader Property:" + propertyStr);
 		String[] propertyArr = propertyStr.split("\\|");
 		HashMap<Integer, Integer> hm_Power = new HashMap<Integer, Integer>() {
 			{
@@ -99,10 +93,10 @@ public class UHFBaseActivity extends BaseActivity {
 				int powerIndex = Integer.parseInt(propertyArr[2]);
 				_NowAntennaNo = hm_Power.get(powerIndex);
 			} catch (Exception ex) {
-				//log.d("Debug", "Get Reader Property failure and conversion failed!");
+				Log.d("Debug", "Get Reader Property failure and conversion failed!");
 			}
 		} else {
-			//log.d("Debug", "Get Reader Property failure");
+			Log.d("Debug", "Get Reader Property failure");
 		}
 	}
 
@@ -116,16 +110,16 @@ public class UHFBaseActivity extends BaseActivity {
         String[] arrRT = searchRT.split("\\|");
 		if (arrRT.length >= 2) {
 			int nowUpDataTime = Integer.parseInt(arrRT[0]);
-			//log.d("Debug", "Check the label to upload time:" + nowUpDataTime);
+			Log.d("Debug", "Check the label to upload time:" + nowUpDataTime);
 			if (_UpDataTime != nowUpDataTime) {
 				//CLReader.SetTagUpdateParam("1," + _UpDataTime); // Set the tag repeat upload time to 20ms
                 UHFReader._Config.SetTagUpdateParam(_UpDataTime,0);//RSSIFilter
-				//log.d("Debug", "Sets the label upload time...");
+				Log.d("Debug", "Sets the label upload time...");
 			} else {
 
 			}
 		} else {
-			//log.d("Debug", "Query tags while uploading failure...");
+			Log.d("Debug", "Query tags while uploading failure...");
 		}
 	}
 

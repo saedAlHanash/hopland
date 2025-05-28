@@ -36,8 +36,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.hopeland.pda.example.R;
 
 import java.lang.reflect.Array;
@@ -47,7 +45,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SuppressLint("HandlerLeak")
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends Activity {
 	protected static final String TAG = "Example";
 	private Toast _MyToast = null;
 
@@ -68,7 +66,6 @@ public class BaseActivity extends AppCompatActivity {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-
 				case MSG_SHOW_WAIT:
 					doShowWaitDialog(null, (String) msg.obj);
 					break;
@@ -415,9 +412,9 @@ public class BaseActivity extends AppCompatActivity {
 		return false;
 	}
 
-	//================================================================
-	// 自定义标题栏 相关
-	//================================================================
+	/****************************************************************
+	 * 自定义标题栏 相关
+	 ***************************************************************/
 
 	/**
 	 * 显示自定义的ActionBar
@@ -761,7 +758,7 @@ public class BaseActivity extends AppCompatActivity {
 						WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 						WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			} catch (Exception ex) {
-				////log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+				//Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 			}
 		} else {
 //			if (wakeLock != null) {
@@ -773,7 +770,7 @@ public class BaseActivity extends AppCompatActivity {
 						0,
 						WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			} catch (Exception ex) {
-				////log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+				//Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 			}
 		}
 	}
@@ -781,6 +778,10 @@ public class BaseActivity extends AppCompatActivity {
 	/****************************************************************
 	 * override 相关
 	 ***************************************************************/
+	@Override
+	public void onBackPressed() {
+		this.finish();
+	}
 
 	protected boolean __Exit = false;
 	@Override

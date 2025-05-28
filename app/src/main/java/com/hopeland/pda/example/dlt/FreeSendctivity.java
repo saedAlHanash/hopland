@@ -169,7 +169,7 @@ public class FreeSendctivity extends BaseActivity {
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 					WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		} catch (Exception ex) {
-			//log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
+			Log.d("Debug", "The initialization of abnormal:" + ex.getMessage());
 		}
 
 		showCustomBar(getString(R.string.STR_FREE_SEND),

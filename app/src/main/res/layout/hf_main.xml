@@ -17,7 +17,8 @@
 			android:layout_margin="5dp"
 			android:background="@drawable/button_blue"
 
-            android:text="@string/btn_HFMenu_ISO15693"
+			android:id="@+id/btn_HFMeum_ISO15693"
+			android:text="@string/btn_HFMenu_ISO15693"
 			android:textSize="22sp"
 			android:onClick="OpenISO15693Activity"/>
 
@@ -27,7 +28,8 @@
 			android:layout_margin="5dp"
 
 			android:background="@drawable/button_blue"
-            android:text="@string/btn_HFMenu_ISO14443A"
+			android:id="@+id/btn_HFMenu_ISO14443A"
+			android:text="@string/btn_HFMenu_ISO14443A"
 			android:textSize="22sp"
 			android:onClick="OpenISO14443AActivity"/>
 
@@ -37,7 +39,8 @@
 			android:layout_margin="5dp"
 
 			android:background="@drawable/button_blue"
-            android:text="@string/btn_HFMenu_Mifare"
+			android:id="@+id/btn_HFMenu_Mifare"
+			android:text="@string/btn_HFMenu_Mifare"
 			android:textSize="22sp"
 			android:onClick="OpenMifareActivity"/>
 

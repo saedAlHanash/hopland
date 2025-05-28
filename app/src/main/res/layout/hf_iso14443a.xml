@@ -83,7 +83,8 @@
 				android:orientation="horizontal">
 
 				<Button
-                    android:layout_width="fill_parent"
+					android:id="@+id/btn_ReadIso14443a_RATS"
+					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:background="@drawable/button_orange"
@@ -136,7 +137,8 @@
 				android:orientation="horizontal">
 
 				<Button
-                    android:layout_width="0dp"
+					android:id="@+id/btn_iso14443a_apdu"
+					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.5"
@@ -145,7 +147,8 @@
 					android:text="@string/hf_iso14443A_send_APDU"/>
 
 				<Button
-                    android:layout_width="0dp"
+					android:id="@+id/btn_iso14443a_deselect"
+					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.5"
@@ -227,7 +230,8 @@
 				android:orientation="horizontal">
 
 				<Button
-                    android:layout_width="0dp"
+					android:id="@+id/btn_iso14443a_Uid"
+					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.5"
@@ -238,7 +242,8 @@
 				</Button>
 
 				<Button
-                    android:layout_width="0dp"
+					android:id="@+id/btn_iso14443a_Halt"
+					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.25"
@@ -247,7 +252,8 @@
 					android:text="@string/hf_suspend"/>
 
 				<Button
-                    android:layout_width="0dp"
+					android:id="@+id/btn_iso14443a_Reset"
+					android:layout_width="0dp"
 					android:layout_height="wrap_content"
 					android:layout_margin="5dp"
 					android:layout_weight="0.25"

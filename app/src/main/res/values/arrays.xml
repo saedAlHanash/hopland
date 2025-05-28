@@ -12,14 +12,36 @@
         <item >EPC</item>
         <item >TID</item>
     </string-array>
-
+    
+    <string-array name="Array_AntType">
+        <item >1_2</item>
+        <item >1</item>
+        <item >2</item>
+    </string-array>
+    
     <string-array name="Array_WriteType">
         <item >EPC</item>
         <item >UserData</item>
         <item >Access Password</item>
     </string-array>
-
-
+    
+    
+    <string-array name="Array_LockArea">
+        <item >Destroy Password</item>
+        <item >Access Password</item>
+        <item >EPC</item>
+        <item >TID</item>
+        <item >UserData</item>
+    </string-array>
+    
+    <string-array name="Array_LockType">
+        <item >Unlock</item>
+        <item >Lock</item>
+        <item >Forever Unlock</item>
+        <item >Forever Lock</item>
+    </string-array>
+    
+    
     <string-array name="Array_BaseSpeedType">
         <item >0|Tari=25us,FM0,LHF=40KHz</item>
         <item >1|Concentrated</item>
@@ -60,9 +82,6 @@
         <item >28</item>
         <item >29</item>
         <item >30</item>
-        <item >31</item>
-        <item >32</item>
-        <item >33</item>
     </string-array>
     <!-- 间隔读-读时间列表 -->
     <string-array name="Array_ReadTime">
@@ -376,6 +395,10 @@
         <item>ALL</item>
         <item>IDLE</item>
     </string-array>
+    <string-array name="Array_Psam_SelectType">
+        <item>Card 1</item>
+        <item>Card 2</item>
+    </string-array>
     <string-array name="Array_mifareType">
         <item>User Area</item>
         <item>Wallet</item>
@@ -417,6 +440,10 @@
     <string-array name="Array_COM_Mode">
         <item>OneTime Send</item>
         <item>Reveive Loop</item>
+    </string-array>
+    <string-array name="Array_PSAM_Index">
+        <item>PSAM1</item>
+        <item>PSAM2</item>
     </string-array>
 
 </resources>
