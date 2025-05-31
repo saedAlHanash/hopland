@@ -3,44 +3,26 @@ package com.util;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
-import android.media.MediaPlayer;
-import android.media.ToneGenerator;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.os.storage.StorageManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.hopeland.pda.example.R;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,14 +37,14 @@ public class BaseActivity extends Activity {
 	protected static final int MSG_SHOW_MSG = -4;
 	protected static final int MSG_SHOW_CONFIRM = -5;
 	protected static final int MSG_UPDATE_WAIT = -6;
-	protected static final int MSG_SHOW_INPUT = -7;
+
 	protected static final int MSG_SHOW_LONG_TIP = -8;
 
-	protected static final int MSG_USER_BEG = 0;
+	public static final int MSG_USER_BEG = 0;
 
 	private ProgressDialog waitDialog = null;
-	private Lock waitDialogLock = new Lock();
-	private Handler handler = new Handler() {
+	private final Lock waitDialogLock = new Lock();
+	private final Handler handler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -130,29 +112,7 @@ public class BaseActivity extends Activity {
 		}
 	}
 
-	/**
-	 * 发送消息
-	 *
-	 * @param what
-	 */
-	protected void sendMessage(int what) {
-		handler.sendMessage(handler.obtainMessage(what, null));
-		try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 
-	/****************************************************************
-	 * 提示信息 相关
-	 ***************************************************************/
-
-	/**
-	 * 气泡提示
-	 *
-	 * @param msg
-	 */
 	protected void showTip(String msg) {
 		sendMessage(MSG_SHOW_TIP, msg);
 	}
@@ -217,16 +177,6 @@ public class BaseActivity extends Activity {
 	 */
 	protected void showWait(String msg) {
 		sendMessage(MSG_SHOW_WAIT, msg);
-	}
-
-
-	/**
-	 * 更新等待信息
-	 *
-	 * @param msg 等待信息
-	 */
-	protected void updateWait(String msg) {
-		sendMessage(MSG_UPDATE_WAIT, msg);
 	}
 
 
@@ -444,13 +394,13 @@ public class BaseActivity extends Activity {
 
 		LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
 		View custActionBar = inflater.inflate(R.layout.custom_action_bar, null);
-		TextView tvTitle = (TextView) custActionBar
+		TextView tvTitle = custActionBar
 				.findViewById(R.id.actionBarTitle);
-		TextView tvSubTitle = (TextView) custActionBar
+		TextView tvSubTitle = custActionBar
 				.findViewById(R.id.actionBarSubTitle);
-		Button btnLeft = (Button) custActionBar
+		Button btnLeft = custActionBar
 				.findViewById(R.id.actionBarLeft);
-		Button btnRight = (Button) custActionBar
+		Button btnRight = custActionBar
 				.findViewById(R.id.actionBarRight);
 
 		tvTitle.setText(title);
@@ -554,182 +504,8 @@ public class BaseActivity extends Activity {
 				rightListen);
 	}
 
-	/****************************************************************
-	 * 声音 相关
-	 ***************************************************************/
-	ToneGenerator toneGenerator;// = new ToneGenerator(AudioManager.STREAM_MUSIC,99);
-	public static final int SUCESS_TONE = ToneGenerator.TONE_PROP_BEEP;
-	public static final int ERROR_TONE = ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK;
 
-	/**
-	 * 播放声音
-	 *
-	 * @param toneType 参见ToneGenerator
-	 */
-	protected void playTone(final int toneType, final int timout) {
-		try {
-			new Thread() {
-				@Override
-				public void run() {
-					try {
-						sleep(timout);
-						if (toneGenerator != null) {
-							toneGenerator.stopTone();
-						}
-					} catch (InterruptedException e) {
-					}
-				}
-			}.start();
-			if (toneGenerator == null) {
-				toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 99);
-			}
-			toneGenerator.startTone(toneType);
-		} catch (Exception e) {
-		}
-	}
-
-	private MediaPlayer mShootMP;
-
-	/**
-	 * 播放声音
-	 *
-	 * @param toneType 参见ToneGenerator
-	 */
-	protected void playTone(final int toneType) {
-		playTone(toneType, 1000);
-		//toneGenerator.startTone(toneType);
-	}
-
-	/**
-	 * 播放声音(来自文件)
-	 */
-	synchronized protected void playSound(String uriString) {
-		AudioManager meng = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-		int volume = meng.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
-
-		if (volume != 0) {
-			if (mShootMP == null)
-				mShootMP = MediaPlayer.create(this, Uri.parse(uriString));
-			if (mShootMP != null)
-				mShootMP.start();
-		}
-	}
-
-	/**
-	 * 模拟蜂鸣器叫
-	 * @param hz
-	 */
-	public void beep(int hz, int ms) {
-		/**
-		 * 正弦波的高度
-		 **/
-		final int HEIGHT = 127;
-		/**
-		 * 2PI
-		 **/
-		final double TWOPI = 2 * 3.1415;
-
-		final int SAMPLERATE = 44100;
-
-		if (ms <= 0) {
-			ms = 1;
-		}
-		if (hz <= 0) {
-			hz = 1407;
-		}
-
-		int waveLen = SAMPLERATE / hz;
-		int length = ms * SAMPLERATE / 1000;
-		length = (length / waveLen) * waveLen;
-
-		int bufferSize = AudioTrack.getMinBufferSize(SAMPLERATE,
-				AudioFormat.CHANNEL_OUT_STEREO, AudioFormat.ENCODING_PCM_8BIT);
-
-		if ((length *2) > bufferSize) {
-			bufferSize = length * 2;
-
-		}
-//		ms = (bufferSize * 1000 / SAMPLERATE) + 1;
-		try {
-			AudioTrack audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, SAMPLERATE,
-					AudioFormat.CHANNEL_OUT_STEREO, // CHANNEL_CONFIGURATION_MONO,
-					AudioFormat.ENCODING_PCM_8BIT, bufferSize, AudioTrack.MODE_STATIC);
-			//生成正弦波
-			byte[] wave = new byte[bufferSize];
-			int i=0;
-			for (; i < length; i++) {
-				wave[i] = (byte) ((int)(HEIGHT * (1 -  Math.sin(TWOPI
-						* ((i % waveLen) * 1.00 / waveLen)))) & 0xff);
-			}
-
-			for (; i < bufferSize; i++) {
-				wave[i] = (byte) ((int)(HEIGHT * (1 - Math.sin(0)))& 0xff);
-			}
-
-			if (audioTrack != null) {
-
-				audioTrack.write(wave, 0, bufferSize);
-				audioTrack.play();
-				Thread.sleep(ms*2);
-				audioTrack.stop();
-				audioTrack.release();
-			}
-
-		} catch (Exception e) {
-			Log.e(TAG,"beep error:" + e.toString() + " \nlen:"+ length + "\nmin:"+bufferSize);
-		}
-	}
-	/**
-	 * 模拟蜂鸣器叫
-	 */
-	public void beep(int ms) {
-		beep(1407, ms);
-	}
-
-	/**
-	 * 模拟蜂鸣器叫
-	 */
-	public void beep() {
-		beep(1407, 50);
-	}
-
-	public void beepWarnning() {
-		beep(1407, 30);
-		beep(1407, 30);
-		beep(1407, 30);
-	}
-
-	/****************************************************************
-	 * 震动 相关
-	 ***************************************************************/
-	private Vibrator vibrator = null;//(Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
-	public static final int SHORT_VIBRATOR = 200;
-	public static final int LONG_VIBRATOR = 1000;
-
-	/**
-	 * 震动
-	 *
-	 * @param milliseconds 震动时长
-	 */
-	protected void playVibrator(final int milliseconds) {
-		if (null == vibrator) {
-			vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-		}
-		vibrator.vibrate(milliseconds);
-	}
-
-	/**
-	 * 震动
-	 *
-	 * @param pattern 震动参数 数组的a[0]表示静止的时间，a[1]代表的是震动的时间，然后数组的a[2]表示静止的时间，a[3]代表的是震动的时间……依次类推下去
-	 * @param repeat  表示从哪里开始循环，比如这里的0表示这个数组在第一次循环完之后会从下标0开始循环到最后，这里的如果是-1表示不循环。
-	 */
-	protected void playVibrator(long[] pattern, int repeat) {
-		if (null == vibrator) {
-			vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-		}
-		vibrator.vibrate(pattern, repeat);
-	}
+	private final Vibrator vibrator = null;//(Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
 
 	/**
 	 * 取消震动
@@ -742,9 +518,7 @@ public class BaseActivity extends Activity {
 
 //	private static PowerManager.WakeLock wakeLock = null;
 
-	/****************************************************************
-	 * 屏幕常亮 相关
-	 ***************************************************************/
+
 	public void keepScreenOn(boolean on) {
 		if (on) {
 //			if (null == wakeLock) {
@@ -775,9 +549,7 @@ public class BaseActivity extends Activity {
 		}
 	}
 
-	/****************************************************************
-	 * override 相关
-	 ***************************************************************/
+
 	@Override
 	public void onBackPressed() {
 		this.finish();
@@ -815,186 +587,6 @@ public class BaseActivity extends Activity {
 		this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);//关键代码
 	}
 
-	/****************************************************************
-	 * 界面辅助 相关
-	 ***************************************************************/
-	/**
-	 * 获取显示宽度
-	 *
-	 * @return 像素
-	 */
-	protected int getWidth() {
-		return getResources().getDisplayMetrics().widthPixels;
-	}
-
-	/**
-	 * 获取显示高度
-	 *
-	 * @return 像素
-	 */
-	protected int getHeight() {
-		return getResources().getDisplayMetrics().heightPixels;
-	}
-
-	/**
-	 * 获取当先显示方向
-	 *
-	 * @return Configuration.ORIENTATION_LANDSCAPE or Configuration.ORIENTATION_PORTRAIT
-	 */
-	protected int getOrientation() {
-		return getResources().getConfiguration().orientation;
-	}
-
-	/**
-	 * 获取显示旋转角度
-	 *
-	 * @return Surface.ROTATION_0 or Surface.ROTATION_90 or Surface.ROTATION_180 or Surface.ROTATION_270
-	 */
-	protected int getRotation() {
-		return getWindowManager().getDefaultDisplay()
-				.getRotation();
-	}
-
-	/**
-	 * 显示新界面
-	 *
-	 * @param cls    界面类
-	 * @param intent 参数
-	 */
-	protected void showActivity(Class<?> cls, Intent intent) {
-		if (intent == null) {
-			intent = new Intent();
-		}
-		intent.setClass(this, cls);
-		startActivity(intent);
-	}
-
-	/**
-	 * 显示新界面
-	 *
-	 * @param cls 界面类
-	 */
-	protected void showActivity(Class<?> cls) {
-		showActivity(cls, null);
-	}
-
-	/**
-	 * 显示新界面并等待结果
-	 *
-	 * @param cls         界面类
-	 * @param intent      参数
-	 * @param requestCode 请求代码
-	 */
-	protected void showActivityForResult(Class<?> cls, Intent intent, int requestCode) {
-		if (intent == null) {
-			intent = new Intent();
-		}
-		intent.setClass(this, cls);
-		startActivityForResult(intent, requestCode);
-	}
-
-	/**
-	 * 显示新界面并等待结果
-	 *
-	 * @param cls         界面类
-	 * @param requestCode 请求代码
-	 */
-	protected void showActivityForResult(Class<?> cls, int requestCode) {
-		showActivityForResult(cls, null, requestCode);
-	}
-
-	/**
-	 * 关闭界面并返回结果
-	 *
-	 * @param result 结果
-	 * @param data   结果数据
-	 */
-	protected void hideActivityWithResult(int result, Intent data) {
-		setResult(result, data);
-		finish();
-	}
-
-	/**
-	 * 关闭界面并返回结果
-	 *
-	 * @param result 结果
-	 */
-	protected void hideActivityWithResult(int result) {
-		setResult(result);
-		finish();
-	}
-
-	/**
-	 * 进入全屏
-	 */
-	protected void enterFullScreen() {
-		Window _window = getWindow();
-
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//全屏
-		_window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-		WindowManager.LayoutParams params = _window.getAttributes();
-		params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
-		_window.setAttributes(params);
-	}
-
-	/**
-	 * 隐藏标题
-	 */
-	protected void hideTitle() {
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-	}
-
-	/**
-	 * 隐藏导航（虚拟按键）
-	 */
-	protected void hideNavigation() {
-		Window _window = getWindow();
-		WindowManager.LayoutParams params = _window.getAttributes();
-		params.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE;
-		_window.setAttributes(params);
-	}
-
-	/****************************************************************
-	 * 存储 相关
-	 ***************************************************************/
-	/**
-	 * 获取可存储路径
-	 *
-	 * @param is_removale 是否为可移动设备
-	 * @return 存储路径或null
-	 */
-	public String getStoragePath(boolean is_removale) {
-		StorageManager mStorageManager = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
-		Class<?> storageVolumeClazz = null;
-		try {
-			storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
-			Method getVolumeList = mStorageManager.getClass().getMethod("getVolumeList");
-			Method getPath = storageVolumeClazz.getMethod("getPath");
-			Method isRemovable = storageVolumeClazz.getMethod("isRemovable");
-			Object result = getVolumeList.invoke(mStorageManager);
-			final int length = Array.getLength(result);
-			for (int i = 0; i < length; i++) {
-				Object storageVolumeElement = Array.get(result, i);
-				String path = (String) getPath.invoke(storageVolumeElement);
-				boolean removable = (Boolean) isRemovable.invoke(storageVolumeElement);
-				if (is_removale == removable) {
-					return path;
-				}
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
 	/****************************************************************
 	 * 通用函数 相关

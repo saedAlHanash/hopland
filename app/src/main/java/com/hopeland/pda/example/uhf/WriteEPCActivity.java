@@ -6,17 +6,14 @@ import android.content.res.Configuration;
 import com.hopeland.pda.example.PublicData;
 import com.hopeland.pda.example.R;
 import com.pda.rfid.uhf.UHFReader;
-import com.port.Adapt;
 import com.pda.rfid.EPCModel;
 import com.pda.rfid.IAsynchronousMessage;
-import com.util.Helper.Helper_String;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
 
@@ -174,7 +171,7 @@ public class WriteEPCActivity extends UHFBaseActivity implements
 		}
 
 		int retval = CLReader.GetReturnData(rt);
-		if (!UHF_CheckReadResult(retval)) {
+		if (UHF_CheckReadResult(retval)) {
 			CLReader.Stop();
 			in_reading = false;
 			return;

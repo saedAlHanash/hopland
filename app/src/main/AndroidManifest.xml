@@ -31,14 +31,14 @@
         </activity>
         <activity android:name=".ItemMainActivity"
 				  android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+        <activity android:name=".uhf.ReadEPCActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".uhf.ReadEPCActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity android:name=".uhf.ReadEPCmatchingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">

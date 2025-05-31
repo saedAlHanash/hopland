@@ -10,7 +10,6 @@ import com.pda.rfid.uhf.UHFReader;
 import com.util.BaseActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -39,9 +38,9 @@ public class UHFBaseActivity extends BaseActivity {
 	 * @return Whether the initialization was successful
 	 */
 	public Boolean UHF_Init(IAsynchronousMessage log) {
-		Boolean rt = false;
+		var rt = false;
 		try {
-			if (_UHFSTATE == false) {
+			if (!_UHFSTATE) {
 				boolean ret = UHFReader.getUHFInstance().OpenConnect(log);
 				if (ret) {
                     rt = true;
@@ -62,7 +61,7 @@ public class UHFBaseActivity extends BaseActivity {
 	 * UHF closes connection
 	 */
 	public void UHF_Dispose() {
-		if (_UHFSTATE == true) {
+		if (_UHFSTATE) {
             UHFReader._Config.CloseConnect();
 			_UHFSTATE = false;
 		}
@@ -106,8 +105,8 @@ public class UHFBaseActivity extends BaseActivity {
 	protected void UHF_SetTagUpdateParam() {
 		// First query whether the current Settings are consistent, if not before setting
 		//String searchRT = CLReader.GetTagUpdateParam();
-        String searchRT = UHFReader._Config.GetTagUpdateParam();
-        String[] arrRT = searchRT.split("\\|");
+        var searchRT = UHFReader._Config.GetTagUpdateParam();
+        var arrRT = searchRT.split("\\|");
 		if (arrRT.length >= 2) {
 			int nowUpDataTime = Integer.parseInt(arrRT[0]);
 			Log.d("Debug", "Check the label to upload time:" + nowUpDataTime);
@@ -115,8 +114,6 @@ public class UHFBaseActivity extends BaseActivity {
 				//CLReader.SetTagUpdateParam("1," + _UpDataTime); // Set the tag repeat upload time to 20ms
                 UHFReader._Config.SetTagUpdateParam(_UpDataTime,0);//RSSIFilter
 				Log.d("Debug", "Sets the label upload time...");
-			} else {
-
 			}
 		} else {
 			Log.d("Debug", "Query tags while uploading failure...");
@@ -125,10 +122,7 @@ public class UHFBaseActivity extends BaseActivity {
 
     //Determine the backup power
     protected Boolean canUsingBackBattery() {
-        if (Adapt.getPowermanagerInstance().getBackupPowerSOC() < low_power_soc) {
-            return false;
-        }
-        return true;
+        return Adapt.getPowermanagerInstance().getBackupPowerSOC() >= low_power_soc;
     }
 
 	/**
@@ -137,15 +131,10 @@ public class UHFBaseActivity extends BaseActivity {
 	protected boolean UHF_CheckReadResult(int retval) {
 		if (99 == retval) {
 			showMsg(getString(R.string.uhf_read_power_over),
-					new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							UHFBaseActivity.this.finish();
-						}
-					});
-			return false;
+                    (dialog, which) -> UHFBaseActivity.this.finish());
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 
@@ -153,9 +142,9 @@ public class UHFBaseActivity extends BaseActivity {
      * Fit the screen
      */
     protected void ChangeLayout(Configuration newConfig) {
-        LinearLayout main = (LinearLayout)findViewById(R.id.view_split_main);
-        LinearLayout left = (LinearLayout)findViewById(R.id.view_split_left);
-        LinearLayout right = (LinearLayout)findViewById(R.id.view_split_right);
+        LinearLayout main = findViewById(R.id.view_split_main);
+        LinearLayout left = findViewById(R.id.view_split_left);
+        LinearLayout right = findViewById(R.id.view_split_right);
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) { //当前屏幕为横屏
             main.setOrientation(LinearLayout.HORIZONTAL);

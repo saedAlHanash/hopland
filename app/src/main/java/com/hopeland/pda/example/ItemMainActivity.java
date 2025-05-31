@@ -61,7 +61,7 @@ public class ItemMainActivity extends BaseActivity {
 		Adapt.enablePauseInBackGround(this);
 		listItemArrayList.clear();
 
-		if (Adapt.getPropertiesInstance().support("UHF")) {
+		if (true||Adapt.getPropertiesInstance().support("UHF")) {
 			HashMap<String, Object> map=new HashMap<String,Object>();
 			map.put("itemImage", R.drawable.uhf);
 			map.put("itemText", getString(R.string.btn_MainMenu_UHF));
@@ -70,7 +70,7 @@ public class ItemMainActivity extends BaseActivity {
 		}
 
 
-		if (Adapt.getPropertiesInstance().support("HF")) {
+		if (true||Adapt.getPropertiesInstance().support("HF")) {
 			HashMap<String, Object> map=new HashMap<String,Object>();
 			map.put("itemImage", R.drawable.hf);
 			map.put("itemText", getString(R.string.btn_MainMenu_HF));
@@ -79,7 +79,7 @@ public class ItemMainActivity extends BaseActivity {
 		}
 
 
-		if (Adapt.getPropertiesInstance().support("PSAM")) {
+		if (true||Adapt.getPropertiesInstance().support("PSAM")) {
 //			HashMap<String, Object> map=new HashMap<String,Object>();
 //			map.put("itemImage", R.drawable.psam);
 //			map.put("itemText", getString(R.string.btn_MainMenu_Psam));
@@ -87,7 +87,7 @@ public class ItemMainActivity extends BaseActivity {
 //			listItemArrayList.add(map);
 		}
 
-		if (Adapt.getPropertiesInstance().support("1DSCANNER")
+		if (true||Adapt.getPropertiesInstance().support("1DSCANNER")
 				|| Adapt.getPropertiesInstance().support("2DScanner")) {
 			HashMap<String, Object> map=new HashMap<String,Object>();
 			map.put("itemImage", R.drawable.scan);
@@ -96,7 +96,7 @@ public class ItemMainActivity extends BaseActivity {
 			listItemArrayList.add(map);
 		}
 
-		if (Adapt.getPropertiesInstance().support("IRDA")
+		if (true||Adapt.getPropertiesInstance().support("IRDA")
 				|| Adapt.getPropertiesInstance().support("RS232")
 				|| Adapt.getPropertiesInstance().support("RS485")
 				|| Adapt.getPropertiesInstance().support("ESAM")) {
@@ -124,7 +124,7 @@ public class ItemMainActivity extends BaseActivity {
 
 
 		//生成适配器的ImageItem 与动态数组的元素相对应
-		SimpleAdapter saImageItems = new SimpleAdapter(this,
+		var saImageItems = new SimpleAdapter(this,
 				listItemArrayList,//数据来源
 				R.layout.grid_item,//item的XML
 
@@ -136,29 +136,27 @@ public class ItemMainActivity extends BaseActivity {
 		//添加并且显示
 		gridView.setAdapter(saImageItems);
 		//添加消息处理
-		gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//Toast.makeText(getActivity(),name[position],Toast.LENGTH_LONG).show();
-				if (isFastClick()) {
-					return;
-				}
-				HashMap<String, Object> map = listItemArrayList.get(position);
+		gridView.setOnItemClickListener((parent, view, position, id) -> {
 
-				if (getString(R.string.btn_MainMenu_Version).equals(map.get("itemText"))) {
-					GetVersion(view);
-					return;
-				} else if (map.get("itemText").equals(getString(R.string.btn_MainMenu_SerialNumber))) {
-					GetSerialNumber(view);
-					return;
-				}
+            if (isFastClick()) {
+                return;
+            }
+            HashMap<String, Object> map = listItemArrayList.get(position);
 
-				Intent intent = new Intent();
-				intent.setClass(ItemMainActivity.this, (Class<?>) map.get("itemActivity"));
+            if (getString(R.string.btn_MainMenu_Version).equals(map.get("itemText"))) {
+                GetVersion(view);
+                return;
+            } else if
+(map.get("itemText").equals(getString(R.string.btn_MainMenu_SerialNumber))) {
+                GetSerialNumber(view);
+                return;
+            }
 
-				startActivity(intent);
-			}
-		});
+            Intent intent = new Intent();
+            intent.setClass(ItemMainActivity.this, (Class<?>) map.get("itemActivity"));
+
+            startActivity(intent);
+        });
 
 		showCustomBar(getString(R.string.tv_MainMenu_Title),
 				getString(R.string.str_exit), null,

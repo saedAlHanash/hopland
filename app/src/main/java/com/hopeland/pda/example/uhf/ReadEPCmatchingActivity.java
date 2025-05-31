@@ -14,7 +14,6 @@ import com.pda.rfid.uhf.UHFReader;
 import com.port.Adapt;
 import com.util.Helper.*;
 
-import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.media.*;
@@ -174,7 +173,7 @@ public class ReadEPCmatchingActivity extends UHFBaseActivity implements
 										_NowAntennaNo, 1, matchingData);
 							}
 
-							if (!UHF_CheckReadResult(rt)) {
+							if (UHF_CheckReadResult(rt)) {
 								Pingpong_Stop();
 								break;
 							}
@@ -490,7 +489,7 @@ public class ReadEPCmatchingActivity extends UHFBaseActivity implements
 					}
 
 					int retval = CLReader.GetReturnData(rt);
-					if (!UHF_CheckReadResult(retval)) {
+					if (UHF_CheckReadResult(retval)) {
 						CLReader.Stop();
 					}
 				}
